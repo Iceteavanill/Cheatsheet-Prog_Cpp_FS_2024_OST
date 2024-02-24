@@ -1,0 +1,74 @@
+\section{Basics}
+
+\subsection{Trivia}
+
+Entstanden durch Stroustrup 1986.\\
+
+\subsection{Grundsätzlich}
+
+C++ ist sehr ähnlich zu C. Es gibt aber einige Wichtige Änderungen zu C:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item zu benutzender Compiler heisst jetzt \say{clang++}
+    \item Nativen Bool Typ : \textbf{Bool}
+    \item richtiges Konstanten Schlüsselwort : \textbf{constexpr}
+    \item Standartbibliotheken haben kein .h mehr beim Aufrufen
+    \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)
+    \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: std
+    \item ...
+\end{itemize}
+
+\subsection{Sourcecode Hello world CPP}
+
+\lstinputlisting[language = c++]{code/hello_World.cpp}
+
+\subsection{Streams}
+
+Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Enigabefeld, Dateien oder Netzwerktraffic.\\
+Die wichtigsten Operatoren sind:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{$<<$} Inserter $\rightarrow$  Daten einfügen
+    \item \textbf{$>>$} Extractor $\rightarrow$ Daten herausholen
+\end{itemize}
+
+Für definierte Klassen sind diese Operatoren bereits definiert.
+
+\subsubsection{Standardstreams}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{cin} Standart Eingabe
+    \item \textbf{cout} Standart Ausgabe
+    \item \textbf{cerr} Standart Fehlerausgabe
+    \item \textbf{clog} Mit cerr gekoppelt aber etwas anders
+\end{itemize}
+
+\subsubsection{Streamformatierung}
+
+Formatierungen der Streams kann mit folgenden Schüsselwörtern erreicht werden:
+
+
+\begin{center}
+    \begin{tabular}{cc}
+        \rowcolor[HTML]{EFEFEF} 
+        \textbf{Flag} & \textbf{Wirkung}                                        \\ \hline
+        boolalpha     & bool-Werte werden textuell ausgegeben                   \\
+        dec           & Ausgabe erfolgt dezimal                                 \\
+        fixed         & Gleitkommazahlen im Fixpunktformat                      \\
+        hex           & Ausgabe erfolgt hexadezimal                             \\
+        internal      & Ausgabe innerhalb Feld                                  \\
+        left          & linksbündig                                             \\
+        oct           & Ausgabe erfolgt oktal                                   \\
+        right         & rechtsbündig                                            \\
+        scientific    & Gleitkommazahl wissenschaftlich                         \\
+        showbase      & Zahlenbasis wird gezeigt                                \\
+        showpoint     & Dezimalpunkt wird immer ausgegeben                      \\
+        showpos       & Vorzeichen bei positiven Zahlen anzeigen                \\
+        skipws        & Führende Whitespaces nicht anzeigen                     \\
+        unitbuf       & Leert Buffer des Outputstreams nach Schreiben           \\
+        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandel         
+    \end{tabular}
+\end{center}
+
+
+
