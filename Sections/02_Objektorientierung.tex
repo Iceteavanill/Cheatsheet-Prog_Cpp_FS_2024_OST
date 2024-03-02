@@ -1,0 +1,95 @@
+\section{Objektorientierung}
+
+Objektorientierung soll es erleichtern eine Abbildung der Realität zu erstellen. 
+Viele Dinge aus der Wirklichkeit können als Modell dargestellt / simplifiziert werden.\\
+Diese Modelle können in Software in sogenannte Objekte \say{umgewandelt} werden.
+
+\subsection{Objekte}
+
+Objekte stellen Dinge, Sachverhalte oder Prozesse dar. Sie sind ein rein gedankliches Konzept.\\
+Sie kennzeichnen sich durch:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item eine Identität, welche es erlaubt Objekte voneinander zu unterscheiden
+    \item statische Eigenschaften zur Darstellung des Zustandes des Objekts in Form von Attributen
+    \item dynamische Eigenschaften zur Darstellung des Verhaltens des Objekts in Form von Methoden
+\end{itemize}
+
+
+\subsection{Klassen \& Instanzen}
+
+Ähnliche Objekte können in \textbf{Klassen} zusammengefasst werden, um Programmieraufwand tiefer zu halten. 
+Verwendete Objekte werden als \textbf{Instanz} eingesetzt. Diese Objekte haben dieselben Attribute, allerdings andere Werte.\\
+Eine Beispielklasse:\\
+
+\lstinputlisting[language = c++]{code/class_example.cpp}
+
+\subsubsection{Header Datei}
+
+Reihenfolge in der Header Datei
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Dateikommentar mit Lizenzvereinbarung.
+    \item \say{Includes} des verwendete System Header
+    \item \say{Includes} der Projektbezogenen Header
+    \item Konstanten
+    \item typdefs und definition von Strukturen
+    \item Aenfalls extern-Deklraration von Global Variablen
+    \item Funktionsprototypen, ink, Kommentar der Schnittstelle, bzw. Klassendeklarationen
+\end{itemize}
+
+Pro header Datei sollte nur eine Klasse deklariert sein.
+
+\subsubsection{Reihenfolger der Implementation}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Dateikommentar mit Lizenzvereinbarung
+    \item \say{includes} der eigenen Header
+    \item \say{includes} der Projektbezogenen Header
+    \item \say{includes} der verwendeten System Header
+    \item allenfalls globale und statischen Variablen
+    \item Präprozessor-Direktiven
+    \item Funktionsprototypen von lokalen, internen Funktionen (in nameless Namespace)
+    \item Definition von Funktionen und Klassen
+\end{itemize}
+
+\subsection{UML}
+
+Die \say{Unified Modeling Language} ist eine normierte Sprache um Objekte Grafisch darzustellen. 
+Sie geht extrem ins Detail, allerdings 
+
+\subsubsection{UML-Klassendiagramm Notation}
+
+Besteht immer aus 3 Boxen:
+
+\begin{center}
+    \begin{tikzpicture} 
+        \umlclass{Student}{ 
+          + IDNumber : int \\ \#{} name : std::string \\ + bierkonsum : float \\ + investedTimeInET : long int 
+          }{ 
+          + doStuff(int time = 0) : void 
+        } 
+    \end{tikzpicture}   
+\end{center}
+
+Zu oberst der Name, in der Mitte Attribute(Variablen) und unten Methoden.\\
+Die Methoden fangen mit einem Symbol an welches die Sichtbarkeit definiert:
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item + public (überall sichtbar)
+    \item - private (nur in  aktueller klasse sichtbar)
+    \item \# protected (in aktueller und Unterklassen sichtbar)
+\end{itemize}
+
+
+\subsubsection{class \& struct}
+
+Eine class und struct können fast identisch verwendet werden. 
+Eine class hat standartmässig sichtbarkeit private, struct public(wenn nichts definiert wird).
+
+
+
+
+
+
+
+

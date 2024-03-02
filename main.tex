@@ -23,7 +23,6 @@
 
 \usepackage{enumitem}%Itemise 
 
-
 %Display Code
 \usepackage{listings}
 \definecolor{codeGreen}{RGB}{106,178,82}
@@ -36,7 +35,7 @@
     stringstyle=\color{olive},
     basicstyle=\ttfamily\footnotesize,
     breakatwhitespace=false,         
-    breaklines=true,                 
+    breaklines=true,                  
     captionpos=b,                    
     keepspaces=true,                 
     numbers=none,                    
@@ -72,6 +71,9 @@
     \end{tcolorbox}%
 }
 
+\usepackage{tikz-uml}
+\tikzumlset{fill class=subsectionbarcolor!50}
+
 %Information for maketitle
 \title{\vspace{-1cm}Prog C++}
 \subtitle{HS 2023, Prof. Dr. Christian Werner}
@@ -102,7 +104,7 @@
         \thispagestyle{fancy}%Pagenumber for first page
 
         \input{Sections/01_basics}
-
+        \input{Sections/02_Objektorientierung.tex}
         
 	\end{multicols*}	
 \end{document}

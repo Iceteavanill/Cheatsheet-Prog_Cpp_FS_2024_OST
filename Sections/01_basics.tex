@@ -2,17 +2,18 @@
 
 \subsection{Trivia}
 
-Entstanden durch Stroustrup 1986.\\
+Entstanden durch Stroustrup 1986.
 
 \subsection{Grundsätzlich}
 
-C++ ist sehr ähnlich zu C. Es gibt aber einige Wichtige Änderungen zu C:
+C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
     \item zu benutzender Compiler heisst jetzt \say{clang++}
     \item Nativen Bool Typ : \textbf{Bool}
     \item richtiges Konstanten Schlüsselwort : \textbf{constexpr}
     \item Standartbibliotheken haben kein .h mehr beim Aufrufen
+    \item C Standartbibliotheken Können weiter verwenden aber haben ein C im Header
     \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)
     \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: std
     \item ...
@@ -24,7 +25,7 @@ C++ ist sehr ähnlich zu C. Es gibt aber einige Wichtige Änderungen zu C:
 
 \subsection{Streams}
 
-Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Enigabefeld, Dateien oder Netzwerktraffic.\\
+Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Eingabefeld, Dateien oder Netzwerktraffic.\\
 Die wichtigsten Operatoren sind:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
@@ -37,10 +38,10 @@ Für definierte Klassen sind diese Operatoren bereits definiert.
 \subsubsection{Standardstreams}
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item \textbf{cin} Standart Eingabe
-    \item \textbf{cout} Standart Ausgabe
-    \item \textbf{cerr} Standart Fehlerausgabe
-    \item \textbf{clog} Mit cerr gekoppelt aber etwas anders
+    \item \textbf{cin} standard Eingabe
+    \item \textbf{cout} standard Ausgabe
+    \item \textbf{cerr} standard Fehlerausgabe
+    \item \textbf{clog} mit cerr gekoppelt aber etwas anders
 \end{itemize}
 
 \subsubsection{Streamformatierung}
@@ -50,7 +51,7 @@ Formatierungen der Streams kann mit folgenden Schüsselwörtern erreicht werden:
 
 \begin{center}
     \begin{tabular}{cc}
-        \rowcolor[HTML]{EFEFEF} 
+        \rowcolor[RGB]{239,239,239} 
         \textbf{Flag} & \textbf{Wirkung}                                        \\ \hline
         boolalpha     & bool-Werte werden textuell ausgegeben                   \\
         dec           & Ausgabe erfolgt dezimal                                 \\
@@ -69,6 +70,5 @@ Formatierungen der Streams kann mit folgenden Schüsselwörtern erreicht werden:
         uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandel         
     \end{tabular}
 \end{center}
-
 
 
