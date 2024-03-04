@@ -1,3 +1,0 @@
-{"rule":"SWISS_GERMAN_SPELLER_RULE","sentence":"^\\Q[language = c++]code/class_example.cpp\\E$"}
-{"rule":"SWISS_GERMAN_SPELLER_RULE","sentence":"^\\QEine class hat standartmässig sichtbarkeit private, struct public(wenn nichts definiert wird).\\E$"}
-{"rule":"SWISS_GERMAN_SPELLER_RULE","sentence":"^\\QEine class und struct können fast identisch verwendet werden.\\E$"}
