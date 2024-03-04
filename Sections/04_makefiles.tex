@@ -1,0 +1,30 @@
+\section{Makefiles}
+
+Makefiles sollten generell das umsetzten des Codes in Maschinencode vereinfachen.
+Es ist eine \say{Skriptingsprache} welche grob nach dem muster \say{Erzeugnis/target} : \say{Abhängigkeiten/Dependency} folgt. 
+Dann folgt indentiert der Befehl, um dieses Erzeugnis zu erzeugen.\\
+Wenn ein Erzeugnis keine Datei zurückgibt, muss dieser als \say{.PHONY} markiert werden. 
+Das verhindert, dass eine Datei mit demselben Namen das Ausführen verhindert.\\
+Am besten sieht man das an einem Beispiel:
+
+\lstinputlisting[language = Make, frame=single]{code/make1}
+
+Der Befehl \say{make all} baut nun das Projekt.\\
+Sind die o Dateien noch aktuell werden diese nicht erneut kompiliert. 
+Das Projektverzeichnis kann einfach durch \say{make clean} aufgeräumt werden.
+
+\subsection{Platzhalter}
+
+In einem Makefile können auch Platzhalter verwendet werden:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{\$ @} Dateiname des Targets
+    \item \textbf{\$ $<$} Dateiname der ersten Dependency des aktuellen Targets
+    \item \textbf{\$ $\wedge$} Dateiname aller Dependencies des aktuellen Targets durch Leerzeichen getrennt
+\end{itemize}
+
+Mit diesen Mitteln kann ein Professionelleres Makefile erstellt werden:
+
+\lstinputlisting[language = Make, frame=single]{code/make2}
+
+Diese kann relativ universell verwendet werden, um kleinere Projekte zu übersetzen.

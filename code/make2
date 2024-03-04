@@ -1,0 +1,18 @@
+CXX = clang++        		# Verwendeter Compiler
+CXXFLAGS = -Wall -c  		# compilerflags
+LDFLAGS = -o         		# loader flags
+BIN = project		 		# binary output
+OBJS = drink.o drinktest.o  # objectfiles
+
+all: $(BIN)
+
+%.o: %.cpp 
+	$(CXX) $(CXXFLAGS) $<
+
+$(BIN): $(OBJS)
+	$(CXX) $(LDFLAGS) $@ $^
+
+clean:
+	rm -f $(OBJS) $(BIN)
+
+.PHONY: clean all
