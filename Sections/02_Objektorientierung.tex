@@ -15,6 +15,7 @@ Sie kennzeichnen sich durch:
     \item dynamische Eigenschaften zur Darstellung des Verhaltens des Objekts in Form von Methoden
 \end{itemize}
 
+\nextcol
 
 \subsection{Klassen \& Instanzen}
 
@@ -97,3 +98,61 @@ Dies wird in einem Blockkommentar, nach folgendem Muster realisiert:
 
 Es kann immer mehr geschrieben werden, es sollte sich aber auf das nötige beschränkt werden.
 
+\section{Konstruktoren und Destruktoren}
+
+Konstruktoren und Destruktoren sind spezielle Methoden von Klassen. 
+Diese haben immer denselben Namen wie die Klasse und auch \textbf{kein} Rückgabetyp(auch nicht void).\\
+Aufrufparameter haben folgende Bedeutung:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{\say{Keine}} : Default Konstruktor
+    \item \textbf{\say{const-Referenz auf eigene Klasse}} : copy Konstruktor
+    \item .....
+\end{itemize}
+
+\subsection{Konstruktoren}
+
+Konstruktoren bereiten die Instanz auf ihre Funktion vor. \\
+
+Wichtig ist das ein Konstruktor immer \textbf{alle} Attribute der Klasse initialisiert.
+Konstruktoren werden wie folgt aufgerufen:\\
+
+\subsubsection{User-Defined}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Default $\rightarrow$ ohne Aufrufparameter
+    \item Copy $\rightarrow$ mit einer const Referenz auf eine andere Instanz
+    \item sonstige $\rightarrow$ werden anhand ihrer Aufrufparameter unterschieden, Sprechweise:\say{überladen}
+\end{itemize}
+
+Werden verschiedene Konstruktoren definiert, der Default aber soll erhalten bleiben, muss dieser in der Klassendefinition zuerst stehen.\\
+
+
+\subsubsection{Implizit}
+
+Falls ein expliziter nicht angegeben wurde, dieser jedoch aus technischen Gründen benötigt wird:
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item Default $\rightarrow$ macht nichts, alle Parameter bleibe uninitialisiert
+    \item Copy $\rightarrow$ dieser kopiert alle Attribute der anderen Instanz eins-zu-eins(bytewise). Problematisch, wenn die Instanz Pointer auf etwas hat.
+    \item ...
+\end{itemize}
+
+Wenn ein Objekt ein Pointer auf einen Wert oder allokierten Speicher hat, muss eine spezielle Copy Methode verwendet werden, da der Pointerwert einfach kopiert wird.
+Falls dann das erste Objekt den Speicher frei gibt, dann entsteht ein falscher Speicherzugriff.
+DH mus dem Objekt ein separater Speicherbereich gegeben werden. 
+
+Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) wenn ein neues Objekt in den Speicher gelegt wird.\\
+
+\subsection{Destruktor}
+
+Destruktoren entfernen das Objekt aus dem Speicher. 
+Hat keine Aufrufparameter und auch kein Rückgabewert.
+Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
+Destruktoren sollten immer \textbf{Virtuell definiert werden} und der Funktionsname beginnt mit einer Tilde.
+
+\nextcol
+
+\subsection{Beispiel}
+
+\lstinputlisting[language = c++]{code/constructor.cpp}
