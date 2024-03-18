@@ -53,7 +53,9 @@ Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben.
 Der New Operator erstellt ein Pointer welcher auf die mitgegebene Grösse zeigt.
 new[ ] macht dasselbe, ausser das dieser ein Array zurückgibt.
 
-Delete([ ]) gibt den Speicher wieder frei.
+Delete([ ]) gibt den Speicher wieder frei. 
+Dieser kann auch auf den Nullpointer ausgeführt werden. 
+Dieser ist \say{Delete} egal.
 
 \lstinputlisting[language = c++]{code/mem_mngmt_cpp.cpp}
 

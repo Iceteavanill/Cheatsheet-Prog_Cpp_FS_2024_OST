@@ -149,10 +149,67 @@ Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) wenn ein 
 Destruktoren entfernen das Objekt aus dem Speicher. 
 Hat keine Aufrufparameter und auch kein Rückgabewert.
 Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
-Destruktoren sollten immer \textbf{Virtuell definiert werden} und der Funktionsname beginnt mit einer Tilde.
-
+Destruktoren sollten immer \textbf{Virtuell definiert werden} und der Funktionsname beginnt mit einer Tilde. 
+Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
 \nextcol
 
 \subsection{Beispiel}
 
 \lstinputlisting[language = c++]{code/constructor.cpp}
+
+\section{Initialisierungslisten und direkte Initialisierung}
+
+Die Initialisierung von Datentypen kann auf verschiedene Arten erreicht werden. 
+Es wird zwischen Zuweisung und Initialisierung unterschieden.
+
+\subsection{POD's}
+
+\say{plain old datastructure} / built in 
+
+\lstinputlisting[language = c++]{code/pod_init.cpp}
+
+\subsection{Non PODs}
+
+\lstinputlisting[language = c++]{code/non_pod_init.cpp}
+
+\subsection{User defined Ctor}
+
+Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden. 
+Eine sogenannte Initialisierungsliste:
+
+\lstinputlisting[language = c++]{code/userdefined_ctro.cpp}
+
+\section{Assertions}
+
+Assertions sollten Annahmen über korrekte Wertebelegung darstellen. 
+Sie sind kein C spezifisches Konzept und sollten nur zu Testzwecken eingesetzt werden. 
+Im Releasebuild sollten sie deaktiviert werden. 
+Dafür gibt es spezifische Präprozessorflags.
+Der Header assert.h bzw. cassert stellt hierfür ein Präprozessor-Makro \say{assert(Bedingung)} zur Verfügung, um solche Zusicherungen auszudrücken.\\
+Beispiel:\\
+
+\lstinputlisting[language = c++]{code/assertions.cpp}
+
+Das obige Beispiel hat eine Assertion. 
+Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegeben. 
+
+\section{Referenzen}
+
+Referenzen sind die modernere / eingeschränkte Version von Pointer. 
+Wenn möglich sollte immer mit Referenzen gearbeitet werden, dies ist aber nicht immer möglich.\\
+
+Referenzen...
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item wirken wie ein Alias-Name einer Variablen
+    \item werden wie normale Variablen verwendet
+    \item sind niemals uninitialisiert
+    \item haben niemals den Wert nullptr
+    \item brauchen nicht immer speicher(Implementation abhängig)
+\end{itemize}
+
+Generell helfen Referenzen weniger Fehler in der Programmierung zu machen und weniger Risiken zu haben. 
+Pointer werden allerdings weiter für sehr hardwarenahe Programmierung gebraucht. 
+Sizeof() liefert die Grösse des Typs, auf der die Referenz zeigt.\\
+Beispiel:
+
+\lstinputlisting[language = c++]{code/referenz.cpp}
