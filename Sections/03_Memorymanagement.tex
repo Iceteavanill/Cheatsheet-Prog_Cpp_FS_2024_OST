@@ -68,3 +68,26 @@ Der Speicheraufbau bildlich dargestellt sieht ungefähr so aus:
 \end{center}
 
 Je nach Architektur kann es auch sein das die hohen und tiefen Adressen anders herum sind.
+
+\subsection{Referenzen}
+
+Referenzen sind die modernere / eingeschränkte Version von Pointer. 
+Wenn möglich sollte immer mit Referenzen gearbeitet werden, dies ist aber nicht immer möglich.\\
+
+Referenzen...
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item wirken wie ein Alias-Name einer Variablen
+    \item werden wie normale Variablen verwendet
+    \item sind niemals uninitialisiert
+    \item haben niemals den Wert nullptr
+    \item brauchen nicht immer speicher(Implementation abhängig)
+\end{itemize}
+
+Generell helfen Referenzen weniger Fehler in der Programmierung zu machen und weniger Risiken zu haben. 
+Pointer werden allerdings weiter für sehr hardwarenahe Programmierung gebraucht. 
+Sizeof() liefert die Grösse des Typs, auf der die Referenz zeigt.\\
+Beispiel:
+
+\lstinputlisting[language = c++]{code/referenz.cpp}
+
+

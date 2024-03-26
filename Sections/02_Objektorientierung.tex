@@ -193,23 +193,135 @@ Beispiel:\\
 Das obige Beispiel hat eine Assertion. 
 Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegeben. 
 
-\section{Referenzen}
+\subsection{This-Pointer}
 
-Referenzen sind die modernere / eingeschränkte Version von Pointer. 
-Wenn möglich sollte immer mit Referenzen gearbeitet werden, dies ist aber nicht immer möglich.\\
+Mit dem \say{this Pointer} kann ein Pointer des aufrufenden Objekt zurückgegeben werden. Bsp:
 
-Referenzen...
-\begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item wirken wie ein Alias-Name einer Variablen
-    \item werden wie normale Variablen verwendet
-    \item sind niemals uninitialisiert
-    \item haben niemals den Wert nullptr
-    \item brauchen nicht immer speicher(Implementation abhängig)
-\end{itemize}
+\lstinputlisting[language = c++]{code/this_pointer.cpp}
 
-Generell helfen Referenzen weniger Fehler in der Programmierung zu machen und weniger Risiken zu haben. 
-Pointer werden allerdings weiter für sehr hardwarenahe Programmierung gebraucht. 
-Sizeof() liefert die Grösse des Typs, auf der die Referenz zeigt.\\
-Beispiel:
+Nacheinander werden diese Funktionen durchlaufen da Funktion(2) vom zurückgegebenen Pointer aus Funktionsaufruf 1 aus gerufen wird.
+Die funktion wird \say{Kaskadiert}
 
-\lstinputlisting[language = c++]{code/referenz.cpp}
+
+\section{Overloading}
+
+Operator Overloading bedeutet das bestehende Operatoren \say{überladen} werden im Sinne neu definiert / drüber laden und erhalten neue bedeutung für eine Klasse. 
+
+
+\subsubsection{Methodenoverloading}
+
+Methoden dürfen in Cpp gleich heissen, sie müssen aber unterschiedliche Aufrufparameter haben.
+\lstinputlisting[language = c++]{code/method_overloading.cpp}
+
+
+\subsection{Operator overloading}
+
+Es können die inkludierten Operatoren von Cpp überladen werden. 
+Erlaubte Operatoren sind:\\
+\begin{tabular}{lllllllll}
+    +            & -               & *           & ⁄                      & \%                           & $\wedge$                & \&                            & |                & $\sim$          \\
+    !            & =               & \textless{} & \textgreater{}         & +=                           & -=                      & *=                            & ⁄=               & \%=             \\
+    $\wedge$=    & \&=             & |=          & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=              \\
+    \textless{}= & \textgreater{}= & \&\&        & ||                     & ++                           & --                      & ,                             & -\textgreater{}* & -\textgreater{} \\
+    ( )          & {[} {]}         & new         & delete                 & new{[}{]}                    & delete{[}{]}            &                               &                  &                
+\end{tabular}
+
+Nicht erlaubte Operatoren sind: \say{.}, \say{.*}, \say{::} und \say{?:}.
+
+Es wird zwischen overloading global und in Methode unterschieden.
+
+\subsubsection{Global}
+
+Globales overloading funktioniert mit einer als \say{friend} deklarierten Funktion. 
+Als friend deklarierte Funktionen agieren als globale Funktion und haben vollen zugriff auf alle Parameter einer Klasse. 
+Sie sind daher zu vermeiden da sie eher ein Workaround sind und zu Problemen führen können.\\ 
+
+Syntax : \say{return-type} operator\say{typ}(type val1, type val2);\\
+BSP:\\
+
+\lstinputlisting[language = c++]{code/operator_overloading_global.cpp}
+
+Die Funktion kann von überall aus dem Programm ausgeführt werden. 
+Es sollte nur dann verwendet werden wenn der erste Parameter (links) nicht eine Instanz der Klasse ist da der Erste Aufrufparameter immer die Instanz sein muss.  
+
+\subsubsection{Methoden}
+
+Ein Operator kann auch als Methode einer Klasse definiert werden. 
+Sie haben nur noch ein Aufrufparameter.\\
+Syntax : \say{return-type} operator\say{typ}(type in);\\
+Der 2. Parameter ist das Objekt selbst, welche die Methode aufruft.
+
+\lstinputlisting[language = c++]{code/operator_overloading_method.cpp}
+
+Die obigen Funktionen machen alle dasselbe. 
+Sie unterscheiden sich durch die unterschiedlichen Argumente. 
+Diese decken verschiedene Eingabetypen ab. 
+Es wäre schlechter Stil, die Typkonvertierung dem Compiler implizit zu überlassen! 
+Ein Fall, der bei dem das anderstypige Argument zuerst kommt, muss noch per Globalem Overloading gelöst werden, da der Erste Aufrufparameter, beim overloading mit Methoden, immer zuerst kommt. 
+ 
+\subsection{Default Argumente}
+
+Default Argumente werden, als Parameterwert verwendet, wenn keiner mitgegeben wird.
+Parameter werden von links nach rechts werten belegt. 
+Daher, wenn manche Aufrufparameter keinen Default wert erhalten, müssen diese weiter links, als welche mit Default wert stehen.  
+
+\lstinputlisting[language = c++]{code/default_argumente.cpp}
+
+Default Argumente können überall verwendet werden, bei Aufrufparameter von Operatoroverloading macht es lediglich keinen Sinn.
+
+\subsection{Getter \& Settermethoden}
+
+Getter und Settermethoden werden Typischerweise verwendet um lese und Schreibzugriffe auf eine Klasse zu regeln. 
+Attribute sind typischerweise privat. 
+Mit einer Get oder Set methode kann dieser kontrollierter angepasst  werden.\\
+
+\lstinputlisting[language = c++]{code/getter_settermethoden.cpp}
+
+\subsection{Vererbung}
+
+Vererbung erlaubt es Attribute und Methoden von anderen Klassen zu übernehmen. 
+Die Oberklasse, Baisklasse oder superklasse \say{vererbt} an eine Unterklasse, derived class oder eine Spezialisierung. 
+Bei der Vererbung werden immer \textbf{Alle} Attribute oder Methoden weitergegeben.  
+
+
+\subsubsection{UML}
+
+In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
+
+\begin{center}
+    \begin{tikzpicture} 
+        \umlclass{Superklasse}{}{}
+        \umlclass[x=5]{Unterklasse}{}{}
+        %\umlinherit{Unterklasse}{Superklasse}
+    \end{tikzpicture}   
+\end{center}
+
+Unterklasse erbt Superklasse.\\
+
+TODO : Multivererbung -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Es ist sehr wichtig, dass die Pfeilspitze \textbf{genau so} aussieht wie im in der Darstellung da ansonsten Verwechslungsgefahr entstehen könnte.
+\subsubsection{Syntax}
+
+\lstinputlisting[language = c++]{code/vererbung_syntax.cpp}
+
+Unterklasse erbt Superklasse.\\
+
+Die Sichtbarkeit ist durch das Public definiert. 
+Es ist möglich die Sichtbarkeit aller Attributen und Methoden einzuschränken. 
+Mit \textbf{Public} wird alles mit der originalen Sichtbarkeit übernommen. 
+Mit \textbf{protected} wird alles was public ist protected. 
+Mit \textbf{private} wird alles private (nicht sehr nützlich).
+
+\subsubsection{C/D tor chaining}
+
+Grundsätzlich initialisieren ctors nur die eigene Klasse. 
+Dh Superklassen initialisieren sich selbst. 
+Eine Subklasse initialisiert sich indem sie zunächst einen ctor der Superklasse aufruft und dann sich selbst:
+
+\lstinputlisting[language = c++]{code/ctor_unterklasse.cpp}
+
+Gleiches gilt mit dem Dtor, nur umgekehrt.
+
+
+
