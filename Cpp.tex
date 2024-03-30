@@ -53,6 +53,9 @@
 }
 \lstset{style=mystyle}
 
+\usepackage{tikz-uml} % for this to work, download tikz-uml.sty from https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php?lang=en to 'texlive/texmf-local/tex/latex/local' and run 'texhash' in ps terminal (windows)
+\tikzumlset{fill class=subsectionbarcolor!50}
+
 % color for  Titel / sub Titel
 \definecolor{sectionbarcolor}{RGB}{148,0,255}
 \definecolor{subsectionbarcolor}{RGB}{220,173,255}
@@ -76,9 +79,6 @@
         {#1}%
     \end{tcolorbox}%
 }
-
-\usepackage{tikz-uml}
-\tikzumlset{fill class=subsectionbarcolor!50}
 
 %Information for maketitle
 \title{\vspace{-1cm}Prog C++}
