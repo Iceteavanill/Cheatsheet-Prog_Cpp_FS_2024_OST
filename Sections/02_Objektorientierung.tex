@@ -219,14 +219,14 @@ Methoden dürfen in Cpp gleich heissen, sie müssen aber unterschiedliche Aufruf
 Es können die inkludierten Operatoren von Cpp überladen werden. 
 Erlaubte Operatoren sind:\\
 \begin{tabular}{lllllllll}
-    +            & -               & *           & ⁄                      & \%                           & $\wedge$                & \&                            & |                & $\sim$          \\
+    +            & -               & *           & ⁄                      & \%                           & $\wedge$                & \&                            & $|$              & $\sim$          \\
     !            & =               & \textless{} & \textgreater{}         & +=                           & -=                      & *=                            & ⁄=               & \%=             \\
-    $\wedge$=    & \&=             & |=          & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=              \\
-    \textless{}= & \textgreater{}= & \&\&        & ||                     & ++                           & --                      & ,                             & -\textgreater{}* & -\textgreater{} \\
+    $\wedge$=    & \&=             & $|$=        & \textless{}\textless{} & \textgreater{}\textgreater{} & \textless{}\textless{}= & \textgreater{}\textgreater{}= & ==               & !=              \\
+    \textless{}= & \textgreater{}= & \&\&        & $\|$                   & ++                           & $--$                    & ,                             & -\textgreater{}* & -\textgreater{} \\
     ( )          & {[} {]}         & new         & delete                 & new{[}{]}                    & delete{[}{]}            &                               &                  &                
 \end{tabular}
 
-Nicht erlaubte Operatoren sind: \say{.}, \say{.*}, \say{::} und \say{?:}.
+Nicht erlaubte Operatoren sind: \say{.} \say{.*} \say{::} und \say{?:}.
 
 Es wird zwischen overloading global und in Methode unterschieden.
 
@@ -277,7 +277,7 @@ Mit einer Get oder Set methode kann dieser kontrollierter angepasst  werden.\\
 
 \lstinputlisting[language = c++]{code/getter_settermethoden.cpp}
 
-\subsection{Vererbung}
+\section{Vererbung}
 
 Vererbung erlaubt es Attribute und Methoden von anderen Klassen zu übernehmen. 
 Die Oberklasse, Baisklasse oder superklasse \say{vererbt} an eine Unterklasse, derived class oder eine Spezialisierung. 
@@ -297,7 +297,8 @@ In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
 \end{center}
 
 
-Unterklasse erbt die Attribute und Methoden von Superklasse.
+Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+Dies stellt eine \say{ist ein beziehung} dar. 
 Es ist sehr wichtig, dass die Pfeilspitze \textbf{genau so} aussieht wie im in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
 
 \subsubsection{UML++}
@@ -341,15 +342,123 @@ Mit \textbf{Public} wird alles mit der originalen Sichtbarkeit übernommen.
 Mit \textbf{protected} wird alles was public ist protected. 
 Mit \textbf{private} wird alles private (nicht sehr nützlich).
 
+Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
+
 \subsubsection{C/D tor chaining}
 
 Grundsätzlich initialisieren ctors nur die eigene Klasse. 
 Dh Superklassen initialisieren sich selbst. 
-Eine Subklasse initialisiert sich indem sie zunächst einen ctor der Superklasse aufruft und dann sich selbst:
+Eine Subklasse initialisiert sich, indem sie zunächst einen ctor der Superklasse aufruft und dann sich selbst \textbf{IMPLIZIT}. 
+Man das auch explizit machen:
 
 \lstinputlisting[language = c++]{code/ctor_unterklasse.cpp}
 
-Gleiches gilt mit dem Dtor, nur umgekehrt.
+Note: Da der Konstruktor aufgerufen wird kann auch ein evtl Private Attribut der Oberklasse initialisiert werden.
+Gleiches gilt mit dem Dtor, nur umgekehrte Reihenfolge (erst wird der Dtor von der subklasse aufgerufen, dann.....).
+
+\subsection{Überschreiben von Methoden}
+
+Geerbte Funktionen können \say{überschrieben} werden. 
+Die Unterklasse definiert eine neue Methode mit demselben Namen.
+Allerdings kann es dann zu Mehrdeutigkeit kommen:\\
+Im folgenden Beispiel haben eine Subklasse und eine Oberklasse eine Print Funktion welche \textbf{Nicht} virtual gekennzeichnet ist:
 
 
+\lstinputlisting[language = c++]{code/methodenueberschreiben.cpp}
 
+Dieses Beispiel soll zeigen, dass Pointer, welche von auf einer Oberklasse auf eine Unterklasse zeigen auf die \say{Eigenen} Funktionen zeigt, solange diese nicht überschrieben worden sind.
+Dies kann als Verhalten gewünscht sein. 
+
+
+\subsection{Virtual, scopeoperator, override und final}
+
+\subsubsection{virtual}
+
+Mit virtual kann eine Methode kennzeichnen, dass diese Methode von einer Unterklasse überschrieben wird.
+Somit würde das obige Beispiel nicht mehr funktionieren und es wird immer die Printfunktion der Unterklasse aufgerufen. 
+In einer Unterklasse ist virtual nicht mehr zwingend zu schreiben.
+Eine Klasse mit einer virtuellen Funktion wird als Polymorph bezeichnet.
+
+\subsubsection{Virtual beim Dtor}
+
+Ist eine Methode als virtual deklariert, so muss der Dtor \textbf{ZWINGEND} auch als virtual deklariert werden.
+
+\subsubsection{Override}
+
+Soll eine Methode eine geerbte Methode ersetzen so muss diese mit \say{Override} gekennzeichnet werden. 
+Solch eine Methode ist automatisch auch virtual.
+Der Compiler kann so überprüfen, ob eine virtual Methode vorhanden ist.
+
+\subsubsection{Final}
+
+Final kann zum einen verbieten, dass eine Methode einer Klasse überschrieben wird
+(Logischerweise geht das nur bei virtuellen Methoden). 
+Zum anderen kann sie auch das weitere Erben einer Klasse verbieten. 
+
+\subsubsection{Scopeoperator}
+
+Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen werden.
+\todo[Scope Operator und Virtual]
+
+\lstinputlisting[language = c++]{code/virtual.cpp}
+
+\subsubsection{RTTI / Typing / Binding}
+
+Wird kein Virtual verwendet, nennt man das static binding. 
+Mit virtual wird es Dynamic binding genannt, da erst bei Laufzeit bekannt ist um welchen Pointer es sich handelt. 
+Um bei Laufzeit herauszufinden um welchen Typ es sich handelt kann die Run-time Type Information verwendet werden. 
+Mit dem \say{typeid} operator kann zur Laufzeit überprüft werden um welchen Typ es sich handelt. 
+typeid gibt ein std::type\_info zurück. 
+
+\lstinputlisting[language = c++]{code/RTTI.cpp}
+
+\subsection{Abstrakte Klassen}
+
+Wenn Klassen zwar festlegt, dass eine Methode da ist, diese aber noch nicht implementieren, nennt man das eine abstrakte Methode. 
+Man spricht dann von einer abstrakten Klasse.
+Eine abstrakte Methode wird in UML \textit{\textbf{kursiv}} dargestellt.
+Es ist egal, ob die abstrakten Methoden selbst definiert sind oder geerbt. 
+Abstrakte Klassen kann man nicht instanziieren.
+Es gibt kein spezielles Schlüsselwort dafür, man weist der Methode bei Definition 0 zu: 
+
+\lstinputlisting[language = c++]{code/abstraktemethode.cpp}
+
+\subsection{Organisation der H files}
+
+Generell gilt immer noch: Jedes H File hat ein Cpp File. 
+Allerdings können Unterklassen in ein H File zusammengefasst werden, falls diese nicht allzu Umfänglich sind. 
+Ansonsten sollt ein neues H File erstellt werden. 
+Für abstrakte Klassen fällt die Implementierung in einem Cpp file weg.
+
+\subsection{Mehrfachvererbung}
+
+Folgender Vererbungszweig ist möglich:\\
+\noindent
+\begin{minipage}{0.5\columnwidth}
+    \begin{center}
+        \begin{tikzpicture}
+    
+            \umlemptyclass[x=1, y=4]{C1}
+    
+            \umlemptyclass[x=0, y=2]{C2}
+            \umlemptyclass[x=2, y=2]{C3}
+    
+            \umlemptyclass[x=1]{C4}
+            
+            \umlinherit{C2}{C1}
+            \umlinherit{C3}{C1}
+    
+            \umlinherit{C4}{C2}
+            \umlinherit{C4}{C3}
+    
+            \end{tikzpicture}   
+    \end{center}  
+\end{minipage}
+\begin{minipage}{0.5\columnwidth}
+Solche Gebilde sind zwar möglich, aber zu verhindern da schnell sehr kompliziert und kaum lesbar. 
+Es entsteht schnell Mehrdeutigkeit, durch die verschiedenen Erbzweige. 
+Bei der Definition einer Klasse kann eine zweite Oberklasse diese mit einem Komma getrennt angegeben werden.
+
+\end{minipage}
+
+\lstinputlisting[language = c++]{code/Mehrfachvererbung.cpp}
