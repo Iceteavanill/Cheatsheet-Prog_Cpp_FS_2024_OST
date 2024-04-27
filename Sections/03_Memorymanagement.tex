@@ -44,7 +44,7 @@ Der Speicher ist \textbf{nicht} initialisiert
 Calloc() macht dasselbe, initialisiert aber den Speicher auf 0.\\
 free() gibt den Speicherbereich wieder frei.
 
-\lstinputlisting[language = c++]{code/mem_mngmt_c.c}
+\lstinputlisting{code/mem_mngmt_c.c}
 
 Falls kein Speicher allokiert werden kann, wird ein NULL-pointer zurückgegeben.
 
@@ -57,7 +57,7 @@ Delete([ ]) gibt den Speicher wieder frei.
 Dieser kann auch auf den Nullpointer ausgeführt werden. 
 Dieser ist \say{Delete} egal.
 
-\lstinputlisting[language = c++]{code/mem_mngmt_cpp.cpp}
+\lstinputlisting{code/mem_mngmt_cpp.cpp}
 
 \subsection{Speicheraufbau}
 
@@ -88,14 +88,52 @@ Pointer werden allerdings weiter für sehr hardwarenahe Programmierung gebraucht
 Sizeof() liefert die Grösse des Typs, auf der die Referenz zeigt.\\
 Beispiel:
 
-\lstinputlisting[language = c++]{code/referenz.cpp}
+\lstinputlisting{code/referenz.cpp}
 
 
 \subsection{Speicherplatzbedarf von Objekten}
 
 Eine Unterklasse braucht immer mindestens so viel speicher einer Oberklasse.
 
-\subsubsection{ZUweisungen}
+\subsubsection{Zuweisungen}
 
 Zuweisungen von Oberklasse zu Unterklasse sind in der regel möglich da alle geerbten Attribute ja vorhanden sind. 
 Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert ist.
+
+\subsection{Type Casting}
+
+\subsubsection{implizit}
+
+Implizites typecasting erlaubt bei numerischen Typen, einigen Pointertypen und Unklasseninstanz zu Oberklassenpointer. 
+
+\subsubsection{Explizit mit C Operator}
+
+Der C Operator \say{()} kann verwendet werden, sollte man aber nicht da keine Unterscheidung bei der Typprüfung (ob statisch oder zur Laufzeit). 
+
+\subsubsection{Explizit const\_cast$<$const typ$>$()}
+
+Hiermit kann die \say{const-ness} oder \say{volatile-ness} ausgehebelt werden. 
+
+
+\subsubsection{Explizit static\_cast$<$static typ$>$()}
+
+Kann ober und Unterklassenpointer in beide Richtungen casten. 
+Unterdrückt auch alle Warnungen bei impliziten Typumwandlung. 
+Es findet keine Typprüfung zur Laufzeit statt. 
+\textbf{Meist verwendeter}
+
+
+\subsubsection{Explizit dynamic\_cast$<$dynamic typ$>$()}
+
+Kann Pointertypen auf polymorphe Klassen casten und prüft mit RTTI ob Typ stimmt. 
+Falls nicht, wird ein nullptr zurückgegeben.
+Kann nicht polymorphe Unterklassen zu einer Oberklasse casten. 
+
+
+\subsubsection{reinterpret\_cast$<$reinterpret typ$>$()}
+
+Mappt das zugrundeliegende Bittmuster auf neuen Typ. 
+Macht keine Typ-Kompatibilitätsprüfung. 
+Reinterpretcast ist Platform Abhängig.
+
+\lstinputlisting{code/casting.cpp}

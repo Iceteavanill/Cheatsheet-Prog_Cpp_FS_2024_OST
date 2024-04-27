@@ -15,7 +15,6 @@ Sie kennzeichnen sich durch:
     \item dynamische Eigenschaften zur Darstellung des Verhaltens des Objekts in Form von Methoden
 \end{itemize}
 
-\nextcol
 
 \subsection{Klassen \& Instanzen}
 
@@ -23,7 +22,7 @@ Sie kennzeichnen sich durch:
 Verwendete Objekte werden als \textbf{Instanz} eingesetzt. Diese Objekte haben dieselben Attribute, allerdings andere Werte.\\
 Eine Beispielklasse:\\
 
-\lstinputlisting[language = c++]{code/class_example.cpp}
+\lstinputlisting{code/class_example.cpp}
 
 \subsubsection{Header Datei}
 
@@ -61,8 +60,9 @@ Sie geht extrem ins Detail, allerdings
 
 \subsubsection{UML-Klassendiagramm Notation}
 
-Besteht immer aus 3 Boxen:
-
+Besteht immer aus 3 Boxen:\\
+\noindent
+\begin{minipage}{0.6\columnwidth}
 \begin{center}
     \begin{tikzpicture} 
         \umlclass{Student}{ 
@@ -72,14 +72,23 @@ Besteht immer aus 3 Boxen:
         } 
     \end{tikzpicture}   
 \end{center}
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+    Zu oberst der Name, in der Mitte Attribute(Variablen) und unten Methoden.
+    Die Methoden fangen mit einem Symbol, an welches die Sichtbarkeit definiert und haben evtl ein bestimmtes Merkmal:
 
-Zu oberst der Name, in der Mitte Attribute(Variablen) und unten Methoden.\\
-Die Methoden fangen mit einem Symbol an welches die Sichtbarkeit definiert:
+\end{minipage}
+
 \begin{itemize}[itemsep=1pt, parsep=0pt]
     \item + public (überall sichtbar)
     \item - private (nur in  aktueller klasse sichtbar)
     \item \# protected (in aktueller und Unterklassen sichtbar)
+    \item \textit{Italic} Funktion oder Klasse ist Abstrakt
+    \item \underline{Unterschrichen} Funktion oder Attribut ist Static
+    \item $[\text{Name der Klasse}]$ Konstruktor
+    \item \texttildelow$[\text{Name der Klasse}]$ Destruktor
 \end{itemize}
+
 
 
 \subsubsection{class \& struct}
@@ -94,7 +103,7 @@ Mann im H-File direkt die Dokumentation zu der Schnittstelle schreiben.
 Das ermöglicht das einfachere Verwenden der Schnittstelle.
 Dies wird in einem Blockkommentar, nach folgendem Muster realisiert:
 
-\lstinputlisting[language = c++]{code/codedocumentation.cpp}
+\lstinputlisting{code/codedocumentation.cpp}
 
 Es kann immer mehr geschrieben werden, es sollte sich aber auf das nötige beschränkt werden.
 
@@ -151,11 +160,10 @@ Hat keine Aufrufparameter und auch kein Rückgabewert.
 Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
 Destruktoren sollten immer \textbf{Virtuell definiert werden} und der Funktionsname beginnt mit einer Tilde. 
 Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
-\nextcol
 
 \subsection{Beispiel}
 
-\lstinputlisting[language = c++]{code/constructor.cpp}
+\lstinputlisting{code/constructor.cpp}
 
 \section{Initialisierungslisten und direkte Initialisierung}
 
@@ -166,18 +174,18 @@ Es wird zwischen Zuweisung und Initialisierung unterschieden.
 
 \say{plain old datastructure} / built in 
 
-\lstinputlisting[language = c++]{code/pod_init.cpp}
+\lstinputlisting{code/pod_init.cpp}
 
 \subsection{Non PODs}
 
-\lstinputlisting[language = c++]{code/non_pod_init.cpp}
+\lstinputlisting{code/non_pod_init.cpp}
 
 \subsection{User defined Ctor}
 
 Um eine Klasse richtig initialisieren zu können muss der Ctor korrekt definiert werden. 
 Eine sogenannte Initialisierungsliste:
 
-\lstinputlisting[language = c++]{code/userdefined_ctro.cpp}
+\lstinputlisting{code/userdefined_ctro.cpp}
 
 \section{Assertions}
 
@@ -188,7 +196,7 @@ Dafür gibt es spezifische Präprozessorflags.
 Der Header assert.h bzw. cassert stellt hierfür ein Präprozessor-Makro \say{assert(Bedingung)} zur Verfügung, um solche Zusicherungen auszudrücken.\\
 Beispiel:\\
 
-\lstinputlisting[language = c++]{code/assertions.cpp}
+\lstinputlisting{code/assertions.cpp}
 
 Das obige Beispiel hat eine Assertion. 
 Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegeben. 
@@ -197,7 +205,7 @@ Diese würde im Test, falls ein Nullpointer übergeben wird ein Fehler ausgegebe
 
 Mit dem \say{this Pointer} kann ein Pointer des aufrufenden Objekt zurückgegeben werden. Bsp:
 
-\lstinputlisting[language = c++]{code/this_pointer.cpp}
+\lstinputlisting{code/this_pointer.cpp}
 
 Nacheinander werden diese Funktionen durchlaufen da Funktion(2) vom zurückgegebenen Pointer aus Funktionsaufruf 1 aus gerufen wird.
 Die funktion wird \say{Kaskadiert}
@@ -211,7 +219,7 @@ Operator Overloading bedeutet das bestehende Operatoren \say{überladen} werden 
 \subsubsection{Methodenoverloading}
 
 Methoden dürfen in Cpp gleich heissen, sie müssen aber unterschiedliche Aufrufparameter haben.
-\lstinputlisting[language = c++]{code/method_overloading.cpp}
+\lstinputlisting{code/method_overloading.cpp}
 
 
 \subsection{Operator overloading}
@@ -239,7 +247,7 @@ Sie sind daher zu vermeiden da sie eher ein Workaround sind und zu Problemen fü
 Syntax : \say{return-type} operator\say{typ}(type val1, type val2);\\
 BSP:\\
 
-\lstinputlisting[language = c++]{code/operator_overloading_global.cpp}
+\lstinputlisting{code/operator_overloading_global.cpp}
 
 Die Funktion kann von überall aus dem Programm ausgeführt werden. 
 Es sollte nur dann verwendet werden wenn der erste Parameter (links) nicht eine Instanz der Klasse ist da der Erste Aufrufparameter immer die Instanz sein muss.  
@@ -251,7 +259,7 @@ Sie haben nur noch ein Aufrufparameter.\\
 Syntax : \say{return-type} operator\say{typ}(type in);\\
 Der 2. Parameter ist das Objekt selbst, welche die Methode aufruft.
 
-\lstinputlisting[language = c++]{code/operator_overloading_method.cpp}
+\lstinputlisting{code/operator_overloading_method.cpp}
 
 Die obigen Funktionen machen alle dasselbe. 
 Sie unterscheiden sich durch die unterschiedlichen Argumente. 
@@ -265,7 +273,7 @@ Default Argumente werden, als Parameterwert verwendet, wenn keiner mitgegeben wi
 Parameter werden von links nach rechts werten belegt. 
 Daher, wenn manche Aufrufparameter keinen Default wert erhalten, müssen diese weiter links, als welche mit Default wert stehen.  
 
-\lstinputlisting[language = c++]{code/default_argumente.cpp}
+\lstinputlisting{code/default_argumente.cpp}
 
 Default Argumente können überall verwendet werden, bei Aufrufparameter von Operatoroverloading macht es lediglich keinen Sinn.
 
@@ -275,7 +283,7 @@ Getter und Settermethoden werden Typischerweise verwendet um lese und Schreibzug
 Attribute sind typischerweise privat. 
 Mit einer Get oder Set methode kann dieser kontrollierter angepasst  werden.\\
 
-\lstinputlisting[language = c++]{code/getter_settermethoden.cpp}
+\lstinputlisting{code/getter_settermethoden.cpp}
 
 \section{Vererbung}
 
@@ -287,31 +295,36 @@ Bei der Vererbung werden immer \textbf{Alle} Attribute oder Methoden weitergegeb
 \subsubsection{UML}
 
 In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
-
+\noindent
+\begin{minipage}{0.6\columnwidth}
 \begin{center}
     \begin{tikzpicture} 
-        \umlclass{Superklasse}{....}{...}
-        \umlclass[x=5]{Unterklasse}{...}{...}
+        \umlclass{Superklasse}{Attribute}{Methoden}
+        \umlclass[x=3]{Unterklasse}{Attribute}{Methoden}
         \umlinherit{Unterklasse}{Superklasse}
     \end{tikzpicture}   
 \end{center}
-
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
 
 Unterklasse erbt (die Attribute und Methoden) von Superklasse. 
+
+\end{minipage}
+
 Dies stellt eine \say{ist ein beziehung} dar. 
 Es ist sehr wichtig, dass die Pfeilspitze \textbf{genau so} aussieht wie im in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
 
 \subsubsection{UML++}
 
-Vererbung ist auch über mehrere Stufen Möglich:
-
+\noindent
+\begin{minipage}{0.6\columnwidth}
 \begin{center}
     \begin{tikzpicture}
 
-        \umlemptyclass[x=2, y=4]{C1}
+        \umlemptyclass[x=2, y=3]{C1}
 
-        \umlemptyclass[x=1, y=2]{C2}
-        \umlemptyclass[x=3, y=2]{C3}
+        \umlemptyclass[x=1, y=1.5]{C2}
+        \umlemptyclass[x=3, y=1.5]{C3}
 
         \umlemptyclass{C4}
         \umlemptyclass[x=2]{C5}
@@ -327,12 +340,15 @@ Vererbung ist auch über mehrere Stufen Möglich:
 
         \end{tikzpicture}   
 \end{center}
-
-C4 Erbt alles von C2 und C1, .....
+\end{minipage}
+\begin{minipage}{0.4\columnwidth}
+    Vererbung ist auch über mehrere Stufen Möglich:\\
+    C4 Erbt alles von C2 und C1, .....
+\end{minipage}
 
 \subsubsection{Syntax}
 
-\lstinputlisting[language = c++]{code/vererbung_syntax.cpp}
+\lstinputlisting{code/vererbung_syntax.cpp}
 
 Unterklasse erbt Superklasse.\\
 
@@ -351,7 +367,7 @@ Dh Superklassen initialisieren sich selbst.
 Eine Subklasse initialisiert sich, indem sie zunächst einen ctor der Superklasse aufruft und dann sich selbst \textbf{IMPLIZIT}. 
 Man das auch explizit machen:
 
-\lstinputlisting[language = c++]{code/ctor_unterklasse.cpp}
+\lstinputlisting{code/ctor_unterklasse.cpp}
 
 Note: Da der Konstruktor aufgerufen wird kann auch ein evtl Private Attribut der Oberklasse initialisiert werden.
 Gleiches gilt mit dem Dtor, nur umgekehrte Reihenfolge (erst wird der Dtor von der subklasse aufgerufen, dann.....).
@@ -364,7 +380,7 @@ Allerdings kann es dann zu Mehrdeutigkeit kommen:\\
 Im folgenden Beispiel haben eine Subklasse und eine Oberklasse eine Print Funktion welche \textbf{Nicht} virtual gekennzeichnet ist:
 
 
-\lstinputlisting[language = c++]{code/methodenueberschreiben.cpp}
+\lstinputlisting{code/methodenueberschreiben.cpp}
 
 Dieses Beispiel soll zeigen, dass Pointer, welche von auf einer Oberklasse auf eine Unterklasse zeigen auf die \say{Eigenen} Funktionen zeigt, solange diese nicht überschrieben worden sind.
 Dies kann als Verhalten gewünscht sein. 
@@ -397,10 +413,10 @@ Zum anderen kann sie auch das weitere Erben einer Klasse verbieten.
 
 \subsubsection{Scopeoperator}
 
-Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen werden.
-\todo[Scope Operator und Virtual]
+Per Scopeoperator kann (::) eine Methode aus einer Oberklasse gezielt aufgerufen werden. 
+Mit diesem wird garantiert die Funktion welche definiert wird aufgerufen, egal ob diese aufgrund virtual überschrieben wird. 
 
-\lstinputlisting[language = c++]{code/virtual.cpp}
+\lstinputlisting{code/virtual.cpp}
 
 \subsubsection{RTTI / Typing / Binding}
 
@@ -410,7 +426,17 @@ Um bei Laufzeit herauszufinden um welchen Typ es sich handelt kann die Run-time 
 Mit dem \say{typeid} operator kann zur Laufzeit überprüft werden um welchen Typ es sich handelt. 
 typeid gibt ein std::type\_info zurück. 
 
-\lstinputlisting[language = c++]{code/RTTI.cpp}
+\lstinputlisting{code/RTTI.cpp}
+
+\subsubsection{Imlementation von RTTI}
+
+Das RTTI System arbeitet meistens mit einem so genannten V-Table in dem zu allen(evtl geerbten) virtuellen Methoden ein Pointer definiert ist. 
+Die Klasse erhält zusätzlich einen V-table Pointer. 
+Zur Laufzeit kann die Instanz via V-table die korrekte Methode ermitteln. 
+
+\begin{center}
+    \includegraphics[width=\columnwidth]{pictures/dynamic binding v-Table.png}  
+\end{center}
 
 \subsection{Abstrakte Klassen}
 
@@ -421,7 +447,7 @@ Es ist egal, ob die abstrakten Methoden selbst definiert sind oder geerbt.
 Abstrakte Klassen kann man nicht instanziieren.
 Es gibt kein spezielles Schlüsselwort dafür, man weist der Methode bei Definition 0 zu: 
 
-\lstinputlisting[language = c++]{code/abstraktemethode.cpp}
+\lstinputlisting{code/abstraktemethode.cpp}
 
 \subsection{Organisation der H files}
 
@@ -457,8 +483,15 @@ Folgender Vererbungszweig ist möglich:\\
 \begin{minipage}{0.5\columnwidth}
 Solche Gebilde sind zwar möglich, aber zu verhindern da schnell sehr kompliziert und kaum lesbar. 
 Es entsteht schnell Mehrdeutigkeit, durch die verschiedenen Erbzweige. 
-Bei der Definition einer Klasse kann eine zweite Oberklasse diese mit einem Komma getrennt angegeben werden.
+Bei der Definition einer Klasse kann eine zweite Oberklasse diese mit einem Komma getrennt angegeben werden :
 
 \end{minipage}
 
-\lstinputlisting[language = c++]{code/Mehrfachvererbung.cpp}
+\lstinputlisting{code/Mehrfachvererbung.cpp}
+
+\subsection{Static} 
+
+Static im Zusammenhang mit Klassen bindet eine Methode oder ein Attribut an die Objektklasse und nicht an die Objektinstanz (ähnlich zu Python Klassenvariablen).
+Static Variablen dürfen nur auf andere Static deklarierte Variablen zugreifen. 
+Static Funktionen müssen im Cpp (und H) File deklariert werden.
+\todo[BSP falls Platz]

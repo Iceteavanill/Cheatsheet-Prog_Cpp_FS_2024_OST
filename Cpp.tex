@@ -18,7 +18,7 @@
 \usepackage[table,xcdraw]{xcolor}% color
 
 %Math stuff
-%\usepackage{mathtools}
+\usepackage{mathtools}
 %\allowdisplaybreaks %allow display breaks in align
 
 \newcommand{\todo}[1][todo]{% Todo marker
@@ -40,6 +40,7 @@
 \definecolor{codeGreen}{RGB}{106,178,82}
 \definecolor{backgroundcolor}{RGB}{255,255,255}
 \lstdefinestyle{mystyle}{
+    language = [11]C++,
     backgroundcolor=\color{backgroundcolor},
     commentstyle=\color{blue},
     keywordstyle=\color{codeGreen},
@@ -55,7 +56,8 @@
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,                  
-    tabsize=2
+    tabsize=2,
+    morekeywords  = {[11]final, override}
 }
 \lstset{style=mystyle}
 

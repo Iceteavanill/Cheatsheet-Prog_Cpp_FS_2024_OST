@@ -1,14 +1,13 @@
+Aclass m;//kein Initialwert
+// Vorsicht: Falls "Aclass" gross ist, muss viel kopiert werden
+m = otherInstance;
 
-// Mitarbeiter m;
-// Vorsicht: Falls sizeof(Mitarbeiter) gross ist, muss hier viel kopiert werden:
-m = stefan;
-
-// Initialisierung fuer non-POD:
-Mitarbeiter m = stefan; //Copy-Initialisierung (copy ctor)
-Mitarbeiter m(stefan); //Copy-Initialisierung, C++-Schreibweise
-Mitarbeiter m{stefan}; //Copy-Initialisierung, bevorzugte C++-Schreibweise seit c++11, aber: noch immer muss kopiert werden!
+// Copy-Initialisierung fuer non-POD:
+Aclass m = otherInstance; //(copy ctor)
+Aclass m(otherInstance); // C++-Schreibweise
+Aclass m{otherInstance}; // C++-Schreibweise seit c++11
 
 //Besser: direkte Initialisierung auch fuer non-PODs:
-Mitarbeiter m("Stefan Melcher", 182.0, 23, 12, 2003); // (vor C++11)
-Mitarbeiter m{"Stefan Melcher", 182.0, 23, 12, 2003}; // bevorzugte Schreibw. seit C++11
+Aclass m("Eagle 1", 1, 2, ...); // (vor C++11)
+Aclass m{"Eagle 1", 1, 2, ...}; // bevorzugte Schreibw. seit C++11
 // Die Instanz wird ohne Umwege mit den gewuenschten Werten in den Speicher geschrieben, sofern ein geeigneter user-defined ctor vorhanden ist!
