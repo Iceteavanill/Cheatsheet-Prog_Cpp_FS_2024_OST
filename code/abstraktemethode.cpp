@@ -1,3 +1,3 @@
-class ModernArt{// abstrakte klasse (wegen Methode)
-    virtual void aMethod() = 0;//abstrakte methode
+class ModernArt{// abstrakte klasse (wegen abstrakter Methode)
+    virtual void aMethod() = 0;// abstrakte Methode
 };

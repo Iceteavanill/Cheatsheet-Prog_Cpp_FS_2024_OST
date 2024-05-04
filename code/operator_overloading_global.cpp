@@ -1,13 +1,12 @@
 // H file
 class Dozent{
-    friend Dozent& operator+(Dozent& in1, Dozent& in2);//der + Operator wird ueberschriben
+    friend Dozent& operator+(Dozent& in1, Dozent& in2);
+                //der + Operator wird ueberschriben
     private:
-    int numb;
+        int numb;
 };
 
 Dozent& operator+(Dozent& in1, Dozent& in2);
-
-// ------ end H file ------ 
 
 // ------ start cpp ------
 Dozent& operator+(Dozent& in1, Dozent& in2){

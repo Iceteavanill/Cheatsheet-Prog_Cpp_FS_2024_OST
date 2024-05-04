@@ -1,8 +1,8 @@
 class Stuff{
     public:
-    Stuff& funktion(int valIn);
+        Stuff& funktion(int valIn);
     private:
-    int value;
+        int value;
 };
 Stuff& Stuff::funktion(int valIn){
     //do Stuff with val z.b. addieren auf interne Variabel

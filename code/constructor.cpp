@@ -8,12 +8,17 @@ class storage{
     private:
         int* data;
         int size;
-};//eine Klasse die Int Werte speichertaehnlich wie ein array
+};//eine Klasse die Int Werte speichert, aehnlich wie ein array
+
 // ---- End h File
+
 storage::storage(){//Konstruktor
     data = nullptr;
     size = 0;
 }
+
+
+
 storage::~storage(){//Destruktor
     delete[] data;
     data = nullptr;
@@ -25,7 +30,9 @@ void storage::add(int in){
 void storage::nix(storage inC){
     //todo
 }
+
 // ---- End cpp File
+
 int main(){
 
     storage* i1 = new storage;//default konstruktor

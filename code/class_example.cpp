@@ -1,4 +1,4 @@
-#include <String>//Stl Strings
+#include <string>//Stl Strings
 class Student {
     public:
         int IDNumber;
@@ -8,9 +8,12 @@ class Student {
         float bierkonsum;
         unsigned long long int investedHoursInET;
 };
+
+// ------ start cpp ------
 //implementierung der doStuff Funktion
-void Student::doStuff(int time = 0) {   
-}//ToDo 
+void Student::doStuff(int time = 0) {  
+    //ToDo
+} 
 
 int main(){
     Student typETStudent;//instanz erzeugen

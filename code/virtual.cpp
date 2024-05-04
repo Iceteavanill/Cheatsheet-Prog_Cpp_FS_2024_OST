@@ -6,6 +6,6 @@ class Subexample : public Uppclass{
     virtual void iAmPerfect() final;//cant be overridden
 };
 void Subexample::newMethod(){
-    Uppclass::amethodfromUpclass();
+    Uppclass::aMethodfromUpclass();
     //calls a class from a class higher in the chain
 }

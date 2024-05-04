@@ -1,3 +1,3 @@
-class Unterklasse : public : Superklasse{
+class Unterklasse : public  Superklasse{
     ...
-} ;
+} ; // Unterklasse erbt Superklasse

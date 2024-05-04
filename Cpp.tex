@@ -6,8 +6,8 @@
 \hypersetup{pdfborder = {0 0 0}}%No borders around Hyperlinks
 
 %Layout
-\usepackage{multicol, geometry, tcolorbox, fancyhdr ,lastpage, dirtytalk, qrcode}
-% mehrere spalten, page layout, farbboxen der titel, header/footer, linkt to last page, make the use of "" easier, QR code im Titel
+\usepackage{multicol, geometry, tcolorbox, fancyhdr ,lastpage, dirtytalk, qrcode, rotating}
+% mehrere spalten, page layout, farbboxen der titel, header/footer, linkt to last page, make the use of "" easier, QR code im Titel, Rotate tables
 \geometry{margin=1cm}
 \parindent 0pt
 \pagestyle{fancy}
@@ -21,11 +21,13 @@
 \usepackage{mathtools}
 %\allowdisplaybreaks %allow display breaks in align
 
-\newcommand{\todo}[1][todo]{% Todo marker
-    \begin{tcolorbox}[colback=orange, beforeafter skip=2pt, boxrule=0pt, arc=2pt, left=0pt, right=0pt, top=0pt, bottom=0pt]%
-        {#1}%
-    \end{tcolorbox}%
-}
+%\newcommand{\todo}[1][todo]{% Todo marker
+%    \begin{tcolorbox}[colback=orange, beforeafter skip=2pt, boxrule=0pt, arc=2pt, left=0pt, right=0pt, top=0pt, bottom=0pt]%
+%        {#1}%
+%    \end{tcolorbox}%
+%} 
+% Todo no longer alowed
+
 
 %automate Columnbreak
 \newcommand{\nextcol}{%
@@ -90,9 +92,9 @@
 
 %Information for maketitle
 \title{\vspace{-1cm}Prog C++}
-\subtitle{HS 2023, Prof. Dr. Christian Werner}
+\subtitle{FS 2024, Prof. Dr. Christian Werner}
 \author{Fabian Steiner, \today}
-\date{{\small 0.0.0.}}
+\date{{\small 1.0.0}}
 
 %Header & footer
 \fancyhf{}
@@ -123,9 +125,10 @@
         \input{Sections/04_makefiles.tex}
         
         \section{Emotional support meme}
+        
         \begin{center}
             \includegraphics[width=\columnwidth]{pictures/ifcondition.png}  
-        \end{center}
-        
-	\end{multicols*}	
+        \end{center}            
+
+	\end{multicols*}
 \end{document}

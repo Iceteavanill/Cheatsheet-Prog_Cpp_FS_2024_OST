@@ -1,11 +1,13 @@
 \section{Makefiles}
 
-Makefiles sollten generell das umsetzten des Codes in Maschinencode vereinfachen.
-Es ist eine \say{Skriptingsprache} welche grob nach dem muster \say{Erzeugnis/target} : \say{Abhängigkeiten/Dependency} folgt. 
+Makefiles sollten generell das Umsetzten des Codes in Maschinencode vereinfachen.
+Es ist eine \say{Skriptingsprache} welche grob nach dem Muster \say{Erzeugnis/target} : \say{Abhängigkeiten/Dependency} folgt. 
 Dann folgt indentiert der Befehl, um dieses Erzeugnis zu erzeugen.\\
 Wenn ein Erzeugnis keine Datei zurückgibt, muss dieser als \say{.PHONY} markiert werden. 
 Das verhindert, dass eine Datei mit demselben Namen das Ausführen verhindert.\\
 Am besten sieht man das an einem Beispiel:
+
+\nextcol
 
 \lstinputlisting[language = Make, frame=single]{code/make1}
 
@@ -28,3 +30,33 @@ Mit diesen Mitteln kann ein Professionelleres Makefile erstellt werden:
 \lstinputlisting[language = Make, frame=single]{code/make2}
 
 Diese kann relativ universell verwendet werden, um kleinere Projekte zu übersetzen.
+
+\nextcol
+
+\section{Styleguide}
+
+\begin{itemize}[itemsep=1pt, parsep=0pt]
+    \item \textbf{Variablen, Konstanten}
+    \begin{itemize}
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : counter, maxSpeed
+    \item \textbf{Funktionen}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Kleinbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item Namen beschreiben Tätigkeiten
+        \item keine Underscores
+    \end{itemize}
+    Beispiele : getCount(), init(), setMaxSpeed()
+    \item \textbf{Klassen, Strukturen, Enums}
+    \begin{itemize}[itemsep=1pt, parsep=0pt]
+        \item mit Grossbuchstaben beginnen
+        \item erster Buchstaben von zusammengesetzten Wörtern ist gross (mixed case)
+        \item keine Underscores
+        \item Namen beschreiben Dinge
+    \end{itemize}
+    Beispiele : MotorController, Queue, Color
+\end{itemize}

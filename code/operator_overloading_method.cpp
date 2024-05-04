@@ -2,14 +2,12 @@
 class Dozent{
     friend Dozent& operator+(int in1, Dozent& in2);
     public: // friends immer vors public
-    Dozent& operator+(Dozent& in1);//der + Operator wird ueberschriben(Falls eine andere Instanz addiert wird)
-    Dozent& operator+(int in1);//der + Operator wird ueberschriben(falls ein Int addiert wird)
+        Dozent& operator+(Dozent& in1);//der + Operator wird ueberschriben(Falls eine andere Instanz addiert wird)
+        Dozent& operator+(int in1);//der + Operator wird ueberschriben(falls ein int addiert wird)
     private:
-    int number;
+        int number;
 };
-Dozent& operator+(int in1, Dozent& in2);//dieser Fall muss so geloest werden
-
-// ------ end H file ------ 
+Dozent& operator+(int in1, Dozent& in2);//dieser Fall muss global / mit friend geloest werden
 
 // ------ start cpp ------
 Dozent& operator+(int in1, Dozent& in2){
@@ -24,7 +22,8 @@ Dozent& Dozent::operator+(int in2){
     number += in2;
     return *this;
 }
-// ------ end Cpp file ------ 
+
+// ------ start main file ------ 
 main(){
     Dozent D1;
     Dozent D2;

@@ -10,12 +10,13 @@ C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
     \item zu benutzender Compiler heisst jetzt \say{clang++}
-    \item Nativen Bool Typ : \textbf{Bool}
+    \item Nativen Bool Typ : \textbf{bool}
     \item richtiges Konstanten Schlüsselwort : \textbf{constexpr}
     \item Standartbibliotheken haben kein .h mehr beim Aufrufen
-    \item C Standartbibliotheken Können weiter verwenden aber haben ein C im Header
-    \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)
+    \item C Standartbibliotheken Können weiter verwendet werden, haben aber ein C im Header(stdio.h $\rightarrow$ cstdio)
+    \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)(Brauchen ein const)
     \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: std
+    \item For Each loop support (siehe Kapitel \ref{forEach})
     \item ...
 \end{itemize}
 
@@ -23,30 +24,41 @@ C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
 
 \lstinputlisting{code/hello_World.cpp}
 
+\subsection{For each Loop}\label{forEach}
+
+For each Loops laufen automatisch ein Array ab, ohne das zuerst die Grösse ermittelt werden muss. 
+Die C for loop syntax wurde etwas erweitert.
+Syntax:
+
+\lstinputlisting{code/forEach.cpp}
+
+Siehe: Als Array Name wird ein Pointer auf das Array verlangt, nicht auf das erste element!  
+Ein foreach funktioniert \textbf{nicht} mit einem \textbf{Pointerpointer}. 
+
 \subsection{Streams}
 
 Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein Eingabefeld, Dateien oder Netzwerktraffic.\\
 Die wichtigsten Operatoren sind:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item \textbf{$<<$} Inserter $\rightarrow$  Daten einfügen
-    \item \textbf{$>>$} Extractor $\rightarrow$ Daten herausholen
+    \item \say{$<<$} Inserter $\rightarrow$  Daten einfügen
+    \item \say{$>>$} Extractor $\rightarrow$ Daten herausholen
 \end{itemize}
 
-Für definierte Klassen sind diese Operatoren bereits definiert.
+Für Standardklassen sind diese Operatoren bereits definiert.
 
 \subsubsection{Standardstreams}
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item \textbf{cin} standard Eingabe
-    \item \textbf{cout} standard Ausgabe
-    \item \textbf{cerr} standard Fehlerausgabe
-    \item \textbf{clog} mit cerr gekoppelt aber etwas anders
+    \item \textbf{cin} : Standard Eingabe
+    \item \textbf{cout} : Standard Ausgabe
+    \item \textbf{cerr} : Standard Fehlerausgabe, möglicherweise mit clog gekoppelt 
+    \item \textbf{clog} : Standard Log Ausgabe 
 \end{itemize}
 
 \subsubsection{Streamformatierung}
 
-Formatierungen der Streams kann mit folgenden Schüsselwörtern erreicht werden:
+Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht werden:
 
 
 \begin{center}
@@ -67,8 +79,24 @@ Formatierungen der Streams kann mit folgenden Schüsselwörtern erreicht werden:
         showpos       & Vorzeichen bei positiven Zahlen anzeigen                \\
         skipws        & Führende Whitespaces nicht anzeigen                     \\
         unitbuf       & Leert Buffer des Outputstreams nach Schreiben           \\
-        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandel         
+        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandel
     \end{tabular}
 \end{center}
+
+Folgende Funktionen setzten Header \textbf{$<$iomanip$>$} voraus:\\
+
+\textbf{Setw(n)}\\
+
+Wenn diese Funktion mit einer ganzen Zahl dem Cout übergeben wird, wird Cout \textbf{mindestens so viele Zeichen} übergeben. 
+Falls Zeichen Fehlen werden diese mit dem Füllzeichen (standardmässig das Leerzeichen) aufgefüllt. 
+Diese Funktion setzt die weite nur \textbf{einmalig}.\\
+
+\textbf{setprecision(n)}\\
+
+Diese Funktion setzt die Anzahl Dezimalstellen (vor und nach dem Komma) welche ausgegeben werden. 
+In kombination mit \textbf{fixed} werden nur die Anzahl \textbf{Nachkommastellen} gesetzt. 
+Die gegebenen Werte bleiben über mehrere einfüge Operationen erhalten (muss man nur einmal setzen). 
+
+
 
 
