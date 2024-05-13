@@ -72,9 +72,9 @@ Besteht immer aus 3 Boxen:\\
 \begin{center}
     \begin{tikzpicture} 
         \umlclass{Student}{ 
-          + IDNumber : int \\ \#{} name : std::string \\ + bierkonsum : float \\ + investedTimeInET : long int 
+          + IDNumber : int \\ \#{} name : std::string \\ - bierkonsum : float \\ \# investedTimeInET : long int 
           }{ 
-          + doStuff(time : int\&) : void \\ + useless(void) : (retType)*
+          - doStuff(time : int\&) : void \\ + \textit{useless(void) : (retType)*}
         }
     \end{tikzpicture}   
 \end{center}
@@ -90,8 +90,8 @@ Besteht immer aus 3 Boxen:\\
     \item + : public (überall sichtbar)
     \item - : private (nur in  aktueller Klasse sichtbar)
     \item \# : protected (in aktueller und Unterklassen sichtbar)
-    \item \textit{Italic} :  Funktion oder Klasse ist Abstrakt
-    \item \underline{Unterschrichen} : Funktion oder Attribut ist Static
+    \item \textit{Italic} :  Funktion oder Klasse ist Abstrakt (=0)
+    \item \underline{Unterschrichen} : Funktion oder Attribut ist static
     \item $<\text{Name der Klasse}>$ :  Konstruktor
     \item $\sim<\text{Name der Klasse}>$ : Destruktor
 \end{itemize}
@@ -163,7 +163,8 @@ Merke: Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) we
 \subsection{Destruktor}
 
 Destruktoren entfernen das Objekt aus dem Speicher. 
-Hat keine Aufrufparameter und auch kein Rückgabewert.
+Hat keine Aufrufparameter und auch kein Rückgabewert. 
+Es kann immer nur \textbf{einen} Destruktor geben
 Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
 Destruktoren sollten immer \textbf{Virtuell definiert werden} (siehe \ref{Virtual}). 
 Mit anderen Virtuellen Funktionen \textbf{müssen} sie Virtuel definiert werden. 
@@ -446,11 +447,18 @@ typeid gibt ein std::type\_info zurück.
 
 Das RTTI System arbeitet meistens mit einem so genannten V-Table in dem zu allen(evtl geerbten) virtuellen Methoden ein Pointer definiert ist. 
 Die Klasse erhält zusätzlich einen V-table Pointer. 
-Zur Laufzeit kann die Instanz via V-table die korrekte Methode ermitteln. 
+Zur Laufzeit kann die Instanz via V-table die korrekte Methode ermitteln.\\
+
+Das folgende Beispiel zeigt das die Memory-map von einem Array mit 2 Oberklassenpointer. 
+Ein Pointer zeigt auf eine Oberklasse, die anderen auf Unterklassen, welche virtuelle Methoden überschrieben haben. 
+Der V-pointer der Ober- und Unterklasse ist darum unterschiedlich / sie zeigen nicht auf denselben Vtable. 
+Die Unterklassen zeigen wiederum auf denselben Vtable.  
 
 \begin{center}
-    \includegraphics[width=\columnwidth]{pictures/dynamic binding v-Table.png}  
+    \includesvg[width = \linewidth, inkscapelatex=false]{svg/vtable.svg}    
 \end{center}
+
+\nextcol
 
 \subsection{Abstrakte Klassen}
 

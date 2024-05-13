@@ -30,7 +30,6 @@ Generell ist bei sehr vollem Speicher das Arbeiten erschwert.
 Falls ein Programm unkontrolliert Speicher aufnimmt oder den ihm zur Verfügung gestellte nicht wieder freigibt, spricht man von einem Speicherleck. 
 Diese sind zu verhindern da diese zu einer Systemüberlastung und Abstürzen führen.
 
-\nextcol
 
 \subsection{Speichermanagement funktionen}
 
@@ -145,13 +144,15 @@ Die C Syntax für Casting sollte nicht mehr verwendet werden da meistens nicht o
 
 \subsection{Templates}
 
-Templates erlaubt es code Typen-unabhängig zu schreiben. 
+Templates erlauben es Typen-unabhängigen Code zu schreiben. 
 Eine Funktion wird mit einem \textbf{Platzhalter-typ} geschrieben. 
 Bei der Verwendung wird ein oder mehrere zu verwendende Typen mitgegeben (es ist auch möglich Konstanten mitzugeben). 
 Es sind Klassen und Funktionstemplates möglich. 
 Templates werden immer zur \textbf{Compilezeit} ausgewertet. 
 Templates brauchen eine Deklaration, Definition und Instanziierungsparameter. 
-Sie werden ausschliesslich in einem H-File deklariert.
+Sie werden ausschliesslich in einem H-File deklariert.\\
+Achtung! Templates werden für jeden \textbf{unterschiedlichen} Typen der Instanziiert wird angelegt. 
+Das kann zu hohem Speicherbedarf führen.
 
 \subsubsection{Implementation}
 
@@ -166,15 +167,15 @@ Die Typendefinitionen sind dann durch das T zu ersetzten.
 
 \subsubsection{Instanziierung}
 
-Klassentemplates können wie folgt verwendet werden:\\
+\textbf{Klassentemplates} (\say{$<>$} braucht es) :\\
+\say{Templatenamename}$<$type1, type2, ...$>$ \say{Instanzname}\\
 
-name$<$type1, type2, ...$>$\\
+\textbf{Funktionstemplates} (\say{$<>$} braucht es):\\
+\say{Templatenamename}$<$type1, type2, ...$>$(param1, ...);\\
 
-Funktionstemplates:\\
+Falls bei der Instanziierung des Funktionstemplates der Typ bereits klar ist, können diese weggelassen werden. 
 
-name$<$type1, type2, ...$>$(param1, ...);\\
-
-Falls bei der Instanziierung des Funktionstemplates der Typ bereits klar ist, kann dieser weggelassen werden. 
+\nextcol
 
 \section{Exceptions}
 
@@ -185,7 +186,7 @@ Eine Exception wird bei Fehlerauftritt \say{geworfen} (throw), und zur Behandlun
 
 \lstinputlisting{code/exceptionGenerellSyntax.cpp}
 
-Diese Syntax ist so in der Praxis wenig anzufinden da das Fehler werfen meist in einer Unterfunktion gemacht wird. 
+Diese Syntax ist so in der Praxis wenig aufzufinden da das Fehler werfen meist in einer Unterfunktion gemacht wird. 
 Eine geworfene Exception wird dann mit code um die Instanziierung gehandhabt. 
 Dies erlaubt es Fehler von Unterfunktionen je nach Situation anders zu handhaben:
 
@@ -194,7 +195,7 @@ Dies erlaubt es Fehler von Unterfunktionen je nach Situation anders zu handhaben
 Cout:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item Entering Foo()
+    \item Entering foo()
     \item Not optimal but ok, Division by zero!
     \item Continue Programm
     \item Entering foo()
@@ -214,8 +215,8 @@ Wenn der letzte Catch block mit \say{...} aufgerufen wird, werden alle Typen Exc
 \subsection{Fehlender catch block}
 
 Falls kein Passender catch Block gefunden werden kann wird die Funktion std::terminate() aufgerufen. 
-Diese ruft den registrierten std::terminate\_handler (Funktionspointer). 
-Defaultmässig ist std::abort() hinterlegt welche das Programm Beendet ohne Destruktoren zu rufen (crash).
+Diese ruft den registrierten \textbf{std::terminate\_handler} (Funktionspointer). 
+Defaultmässig ist \textbf{std::abort()} hinterlegt welche das Programm beendet ohne Destruktoren zu rufen (crash).
 Falls dieses Verhalten angepasst werden soll, kann man das mit \say{set\_terminate(std::terminate\_handler f)}.
 
 \subsection{leerer Catch block}
@@ -224,14 +225,14 @@ Falls dieses Verhalten angepasst werden soll, kann man das mit \say{set\_termina
 
 \subsection{noexcept}
 
-Um zu signalisieren, ob eine Funktion eine Exception auslösen kann oder nicht, kann der specifier \say{noexept} verwendet werden. 
-Dafür ist aber der Entwickler zuständig. 
-Der Compiler kann nicht prüfen, ob die Funktion tatsächlich eine Exception wirft oder nicht. 
-Der Entwickler ist dafür verantwortlich. 
+Um zu signalisieren, ob eine Funktion eine Exception auslösen kann oder nicht, kann der specifier \say{\textbf{noexept}} verwendet werden. 
+Dafür ist aber \textbf{der Entwickler zuständig}. 
+Der Compiler kann \textbf{nicht} prüfen, ob die Funktion tatsächlich eine Exception wirft oder nicht. 
 
 \subsection{$<$stdexcept$>$}
 
 \textbf{stdexcept} ist dazu da um einen einfachen Austausch von Fehlerinformationen vorzunehmen. 
-Dafür sind diverse standardisierte Fehlertypen definiert. 
-Für Details siehe:\\
+Dafür sind diverse standardisierte Fehlertypen als Klassen definiert. Z.b.:\\
+\begin{tabular}{ccc} \textbf{std::logic\_error} & \textbf{std::out\_of\_range} & \textbf{std::overflow\_error} \end{tabular}
+Für Details siehe :\\
 \url{https://en.cppreference.com/w/cpp/header/stdexcept}
