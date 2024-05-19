@@ -63,11 +63,23 @@
 }
 \lstset{style=mystyle}
 
-\usepackage{tikz-uml} % for this to work, download tikz-uml.sty from https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php?lang=en to 'texlive/texmf-local/tex/latex/local' and run 'texhash' in ps terminal (windows)
-\tikzumlset{fill class=subsectionbarcolor!50}
+\usepackage{ifthen} % ifthen to let others use this document, based on their setup
+\newboolean{tikzumlWorks}
+\setboolean{tikzumlWorks}{true} % false = tikzpackage NOT installed
 
-\usepackage{svg}
-\svgpath{{svg/}}
+\newboolean{svgWorks}
+\setboolean{svgWorks}{true} % false = svg package NOT installed
+
+\ifthenelse{\boolean{tikzumlWorks}}{
+    \usepackage{tikz-uml} % for this to work, download tikz-uml.sty from https://perso.ensta-paris.fr/~kielbasi/tikzuml/index.php?lang=en to 'texlive/texmf-local/tex/latex/local' and run 'texhash' in ps terminal (windows)
+    \tikzumlset{fill class=subsectionbarcolor!50}
+    }{}
+
+\ifthenelse{\boolean{svgWorks}}{
+    \usepackage{svg}
+    \svgpath{{svg/}}
+    }{}
+
 
 % color for  Titel / sub Titel
 \definecolor{sectionbarcolor}{RGB}{148,0,255}
@@ -97,7 +109,7 @@
 \title{\vspace{-1cm}Prog C++}
 \subtitle{FS 2024, Prof. Dr. Christian Werner}
 \author{Fabian Steiner, \today}
-\date{{\small 1.1.0}}
+\date{{\small 1.1.1}}
 
 %Header & footer
 \fancyhf{}

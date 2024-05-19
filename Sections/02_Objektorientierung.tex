@@ -70,13 +70,17 @@ Besteht immer aus 3 Boxen:\\
 \noindent
 \begin{minipage}{0.6\columnwidth}
 \begin{center}
+    \ifthenelse{\boolean{tikzumlWorks}}{
     \begin{tikzpicture} 
         \umlclass{Student}{ 
-          + IDNumber : int \\ \#{} name : std::string \\ - bierkonsum : float \\ \# investedTimeInET : long int 
-          }{ 
-          - doStuff(time : int\&) : void \\ + \textit{useless(void) : (retType)*}
+            + IDNumber : int \\ \#{} name : std::string \\ - bierkonsum : float \\ \# investedTimeInET : long int 
+            }{ 
+            - doStuff(time : int\&) : void \\ + \textit{useless(void) : (retType)*}
         }
-    \end{tikzpicture}   
+    \end{tikzpicture}  
+    }{
+        \includegraphics[width=0.8\columnwidth]{pictures/UML-Klassendiagramm Notation.png}    
+    }
 \end{center}
 \end{minipage}
 \begin{minipage}{0.4\columnwidth}
@@ -313,11 +317,15 @@ In einem UML Diagramm wird vererbung wie folgt dargestellt:\\
 \noindent
 \begin{minipage}{0.6\columnwidth}
 \begin{center}
-    \begin{tikzpicture} 
-        \umlclass{Superklasse}{Attribute}{Methoden}
-        \umlclass[x=3]{Unterklasse}{Attribute}{Methoden}
-        \umlinherit{Unterklasse}{Superklasse}
-    \end{tikzpicture}   
+    \ifthenelse{\boolean{tikzumlWorks}}{
+        \begin{tikzpicture} 
+            \umlclass{Superklasse}{Attribute}{Methoden}
+            \umlclass[x=3]{Unterklasse}{Attribute}{Methoden}
+            \umlinherit{Unterklasse}{Superklasse}
+        \end{tikzpicture} 
+        }{
+            \includegraphics[width=\columnwidth]{pictures/uml.png}    
+        }
 \end{center}
 \end{minipage}
 \begin{minipage}{0.4\columnwidth}
@@ -334,26 +342,30 @@ Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} 
 \noindent
 \begin{minipage}{0.6\columnwidth}
 \begin{center}
-    \begin{tikzpicture}
+    \ifthenelse{\boolean{tikzumlWorks}}{
+        \begin{tikzpicture}
 
-        \umlemptyclass[x=2, y=3]{C1}
-
-        \umlemptyclass[x=1, y=1.5]{C2}
-        \umlemptyclass[x=3, y=1.5]{C3}
-
-        \umlemptyclass{C4}
-        \umlemptyclass[x=2]{C5}
-        \umlemptyclass[x=4]{C6}
-
-        
-        \umlinherit{C2}{C1}
-        \umlinherit{C3}{C1}
-
-        \umlinherit{C4}{C2}
-        \umlinherit{C5}{C2}
-        \umlinherit{C6}{C3}
-
-        \end{tikzpicture}   
+            \umlemptyclass[x=2, y=3]{C1}
+    
+            \umlemptyclass[x=1, y=1.5]{C2}
+            \umlemptyclass[x=3, y=1.5]{C3}
+    
+            \umlemptyclass{C4}
+            \umlemptyclass[x=2]{C5}
+            \umlemptyclass[x=4]{C6}
+    
+            
+            \umlinherit{C2}{C1}
+            \umlinherit{C3}{C1}
+    
+            \umlinherit{C4}{C2}
+            \umlinherit{C5}{C2}
+            \umlinherit{C6}{C3}
+    
+            \end{tikzpicture}   
+        }{
+            \includegraphics[width=\columnwidth]{pictures/uml++.png}    
+        }
 \end{center}
 \end{minipage}
 \begin{minipage}{0.4\columnwidth}
@@ -455,7 +467,11 @@ Der V-pointer der Ober- und Unterklasse ist darum unterschiedlich / sie zeigen n
 Die Unterklassen zeigen wiederum auf denselben Vtable.  
 
 \begin{center}
-    \includesvg[width = \linewidth, inkscapelatex=false]{svg/vtable.svg}    
+    \ifthenelse{\boolean{tikzumlWorks}}{
+        \includesvg[width = \linewidth, inkscapelatex=false]{svg/vtable.svg}    
+    }{
+        \includegraphics[width=\columnwidth]{pictures/vtable.png}  
+    }
 \end{center}
 
 \nextcol
@@ -484,22 +500,26 @@ Folgender Vererbungszweig ist möglich:\\
 \noindent
 \begin{minipage}{0.5\columnwidth}
     \begin{center}
-        \begin{tikzpicture}
+        \ifthenelse{\boolean{tikzumlWorks}}{
+            \begin{tikzpicture}
     
-            \umlemptyclass[x=1, y=4]{C1}
-    
-            \umlemptyclass[x=0, y=2]{C2}
-            \umlemptyclass[x=2, y=2]{C3}
-    
-            \umlemptyclass[x=1]{C4}
-            
-            \umlinherit{C2}{C1}
-            \umlinherit{C3}{C1}
-    
-            \umlinherit{C4}{C2}
-            \umlinherit{C4}{C3}
-    
-            \end{tikzpicture}   
+                \umlemptyclass[x=1, y=4]{C1}
+        
+                \umlemptyclass[x=0, y=2]{C2}
+                \umlemptyclass[x=2, y=2]{C3}
+        
+                \umlemptyclass[x=1]{C4}
+                
+                \umlinherit{C2}{C1}
+                \umlinherit{C3}{C1}
+        
+                \umlinherit{C4}{C2}
+                \umlinherit{C4}{C3}
+        
+                \end{tikzpicture}   
+            }{
+                \includegraphics[width=0.7\columnwidth]{pictures/Mehrfachvererbung.png}    
+            }
     \end{center}  
 \end{minipage}
 \begin{minipage}{0.5\columnwidth}
