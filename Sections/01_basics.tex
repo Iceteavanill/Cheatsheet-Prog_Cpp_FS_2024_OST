@@ -24,15 +24,15 @@ C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
 
 \lstinputlisting{code/hello_World.cpp}
 
-\subsection{For each Loop}\label{forEach}
+\subsection{Range-based for Loop}\label{forEach}
 
-For each Loops laufen automatisch ein Array ab, ohne das zuerst die Grösse ermittelt werden muss. 
+Range based for Loops laufen automatisch ein Array ab, ohne das zuerst die Grösse ermittelt werden muss. 
 Die C for loop syntax wurde etwas erweitert.
 Syntax:
 
 \lstinputlisting{code/forEach.cpp}
 
-Siehe: Als Array Name wird ein Pointer auf das Array verlangt, nicht auf das erste element!  
+Siehe: Als Array Name wird ein \say{Pointer} auf das Array verlangt, nicht auf das erste Element!  
 Ein foreach funktioniert \textbf{nicht} mit einem \textbf{Pointerpointer}. 
 
 \subsection{Streams}
@@ -62,7 +62,7 @@ Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht wer
 
 
 \begin{center}
-    \begin{tabular}{cc}
+    \begin{tabular}{ll}
         \rowcolor[RGB]{239,239,239} 
         \textbf{Flag} & \textbf{Wirkung}                                        \\ \hline
         boolalpha     & bool-Werte werden textuell ausgegeben                   \\
