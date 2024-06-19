@@ -79,7 +79,7 @@ Formatierungen der Streams können mit folgenden Schlüsselwörtern erreicht wer
         showpos       & Vorzeichen bei positiven Zahlen anzeigen                \\
         skipws        & Führende Whitespaces nicht anzeigen                     \\
         unitbuf       & Leert Buffer des Outputstreams nach Schreiben           \\
-        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandel
+        uppercase     & Alle Kleinbuchstaben in Grossbuchstaben wandeln
     \end{tabular}
 \end{center}
 
@@ -88,19 +88,19 @@ Folgende Funktionen setzten Header \textbf{$<$iomanip$>$} voraus:\\
 \textbf{setw(n)}\\
 
 Wenn diese Funktion mit einer ganzen Zahl dem Cout übergeben wird, wird Cout \textbf{mindestens so viele Zeichen} übergeben. 
-Falls Zeichen Fehlen werden diese mit dem Füllzeichen (standardmässig das Leerzeichen) aufgefüllt. 
-Diese Funktion setzt die weite nur \textbf{einmalig}.\\
+Falls Zeichen fehlen, werden diese mit dem Füllzeichen (standardmässig das Leerzeichen) aufgefüllt. 
+Diese Funktion setzt die Weite nur \textbf{einmalig}.\\
 
 \textbf{setprecision(n)}\\
 
-Diese Funktion setzt die Anzahl Dezimalstellen (vor und nach dem Komma) welche ausgegeben werden. 
-In kombination mit \textbf{fixed} werden nur die Anzahl \textbf{Nachkommastellen} gesetzt. 
-Die gegebenen Werte bleiben über mehrere einfüge Operationen erhalten (muss man nur einmal setzen). 
+Diese Funktion setzt die Anzahl Dezimalstellen (vor und nach dem Komma), welche ausgegeben werden. 
+In Kombination mit \textbf{fixed} werden nur die Anzahl \textbf{Nachkommastellen} gesetzt. 
+Die gegebenen Werte bleiben über mehrere Einfügeoperationen erhalten (muss man nur einmal setzen). 
 
 \section{Namespaces}
 
-Namespaces helfen Namenskonflikte zu verhindern. 
-Sie fügen ein Namensvorsatz zu allen variablen. 
-Können sehr mächtig sein aber führt zu komplexität
+Namespaces helfen, Namenskonflikte zu verhindern. 
+Sie fügen ein Namensvorsatz zu allen Variablen. 
+Können sehr mächtig sein, führt aber zu Komplexität
 
 \lstinputlisting{code/namespace.cpp}
