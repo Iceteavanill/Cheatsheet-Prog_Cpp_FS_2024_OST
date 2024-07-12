@@ -126,7 +126,7 @@ Umgekehrt geht das allerdings nicht, da der Speicher dafür nicht initialisiert 
           \begin{tabular}[c]{@{}l@{}}Unterstützt ausserdem einen\\ Upcast für Pointer- und\\ Referenztypen auf nichtpolymorphe Klassen\\ (normalerweise machen wir dies aber \\ implizit oder verwenden einen static\_cast!)\\ Falls der dynamic\_cast \textbf{fehlschlägt}, liefert \\ er bei Pointer-Typen den Wert\\ \textbf{nullptr}, bei Referenzen wird\\ eine \textbf{std::bad\_cast-Exception} geworfen\end{tabular} &
           \begin{tabular}[c]{@{}l@{}}Animal* a = {\color{codeGreen}new} Ant;\\ Bird* b = {\color{codeGreen}dynamic\_cast}\textless{}Bird*\textgreater{}(a);\\ {\color{blue}/* Der Dynamic Cast wird}\\ {\color{blue}immer zur Laufzeit ausgewertet.  dh:}\\ {\color{blue}b ==nullptr */}\end{tabular} \\ \hline
         {\color{blue} const} &
-          \begin{tabular}[c]{@{}l@{}}verändert die \say{constness} und/oder\\ \say{volatile-ness} des\\ Ziels eines Pointeroder ReferenzTyps.\end{tabular} &
+          \begin{tabular}[c]{@{}l@{}}verändert die \say{constness} und/oder\\ \say{volatile-ness} des\\ Ziels eines Pointer oder Referenz Typs.\end{tabular} &
            &
           \begin{tabular}[c]{@{}l@{}}{\color{codeGreen}const int} val = 10; \\ {\color{codeGreen}const int} *ptr = \&val; \\ {\color{codeGreen}int} *ptr1 = {\color{codeGreen}const\_cast} \textless{}{\color{codeGreen}int} *\textgreater{}(ptr);\end{tabular} \\ \hline
         {\color{blue} reinterpret} &
@@ -156,7 +156,7 @@ Das kann zu hohem Speicherbedarf führen.
 
 \subsubsection{Implementation}
 
-Eine Funktion / Klasse kann als Template definiert werden indem \say{template $<$typename1 T1, typename2 T2, ...$>$ } (mit\say{$<>$}) vor die Funktion / Klasse geschrieben wird. 
+Eine Funktion / Klasse kann als Template definiert werden indem \verb|template<typename1 T1, typename2 T2, ...>| (mit\say{$<>$}) vor die Funktion / Klasse geschrieben wird. 
 Die Typendefinitionen sind dann durch das T zu ersetzten. 
 
 \lstinputlisting{code/templatesswap.cpp}
@@ -167,11 +167,11 @@ Die Typendefinitionen sind dann durch das T zu ersetzten.
 
 \subsubsection{Instanziierung}
 
-\textbf{Klassentemplates} (\say{$<>$} braucht es) :\\
-\say{Templatenamename}$<$type1, type2, ...$>$ \say{Instanzname}\\
+\textbf{Klassentemplates} (\verb|<>| sind nicht fakultativ):\\
+\verb|Templatenamename<type1, type2, ...>Instanzname|\\
 
-\textbf{Funktionstemplates} (\say{$<>$} braucht es):\\
-\say{Templatenamename}$<$type1, type2, ...$>$(param1, ...);\\
+\textbf{Funktionstemplates} (\verb|<>| sind nicht fakultativ):\\
+\verb|Templatenamename<type1, type2, ...>(param1, ...);|\\
 
 Falls bei der Instanziierung des Funktionstemplates der Typ bereits klar ist, können diese weggelassen werden.\\
 \nextcol

@@ -12,7 +12,7 @@ Dozent& operator+(int in1, Dozent& in2);//dieser Fall muss global / mit friend g
 // ------ start cpp ------
 Dozent& operator+(int in1, Dozent& in2){
         in2.number += in1;
-        return in2;
+        return in2; 
 }
 Dozent& Dozent::operator+(Dozent& in2){
     number += in2.number;
@@ -27,7 +27,7 @@ Dozent& Dozent::operator+(int in2){
 main(){
     Dozent D1;
     Dozent D2;
-    D1 + D2;
-    D1 + 1;
-    1  + D1;//durch Global overloading abgedeckt
+    D1 + D2;// fall mit anderer Instanz
+    D1 + 1;// fall mit int
+    1  + D1;// durch Global overloading abgedeckt
 }

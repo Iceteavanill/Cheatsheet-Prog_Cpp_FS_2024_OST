@@ -94,13 +94,13 @@ Besteht immer aus 3 Boxen:\\
     \item \# : protected (in aktueller und Unterklassen sichtbar)
     \item \textit{Italic} : Funktion oder Klasse ist Abstrakt (=0)
     \item \underline{Unterstrichen} : Funktion oder Attribut ist static
-    \item $<\text{Name der Klasse}>$ :  Konstruktor
-    \item $\sim<\text{Name der Klasse}>$ : Destruktor
+    \item \verb|<Name der Klasse>| :  Konstruktor (ohne \verb|<>|)
+    \item $\sim$\verb|<Name der Klasse>| : Destruktor (ohne \verb|<>|)
 \end{itemize}
 
 
 
-\subsubsection{class \& struct im Zusammenhang mit Objekten}
+\subsection{class vs struct}
 
 Eine class und struct können fast identisch verwendet werden. 
 Eine class hat standardmässig Sichtbarkeit private, Struct public(wenn nichts definiert wird).
@@ -164,13 +164,13 @@ Merke: Konstruktoren werden immer dann gerufen (evtl. auch \textbf{implizit}) we
 
 \subsection{Destruktor}
 
-Destruktoren entfernen das Objekt aus dem Speicher. 
-Hat keine Aufrufparameter und auch kein Rückgabewert. 
-Es kann immer nur \textbf{einen} Destruktor geben
+Ein Destruktor eintfernt eine Instanz aus dem Speicher, 
+hat keine Aufrufparameter und auch kein Rückgabewert. 
+Es kann immer nur \textbf{einen} Destruktor geben. 
 Wenn der Destruktor fertig ist, sollte kein Speicher mehr vom Objekt belegt sein.\\
-Destruktoren sollten immer \textbf{Virtuell definiert werden} (siehe \ref{Virtual}). 
-Mit anderen Virtuellen Funktionen \textbf{müssen} sie Virtuel definiert werden. 
-Der Funktionsname beginnt mit einer Tilde. 
+Destruktoren sollten immer \textbf{virtuell definiert werden} (siehe \ref{Virtual}). 
+Mit anderen virtuellen Funktionen \textbf{müssen} sie virtuel definiert werden. 
+Der Funktionsname beginnt mit einer Tilde($\sim$). 
 Der Destruktor wird evtl. auch Implizit aufgerufen z.b., wenn aus einer Funktion wieder herausgesprungen wird. 
 
 \subsection{Beispiel}
@@ -259,7 +259,7 @@ Globales overloading funktioniert mit einer als \say{friend} deklarierten Funkti
 Als friend deklarierte Funktionen agieren als \textbf{globale Funktion} und haben vollen zugriff auf \textbf{alle Parameter einer Klasse}. 
 Sie sind daher zu vermeiden da sie eher ein Workaround sind und zu Problemen führen können.\\ 
 
-Syntax : \say{return-type} operator\say{typ}(type val1, type val2);\\
+Syntax : \verb|<returntype> operator<type>(type val1, type val2);|\\
 BSP:\\
 
 \lstinputlisting{code/operator_overloading_global.cpp}
@@ -271,7 +271,7 @@ Es sollte nur dann verwendet werden, wenn der erste Parameter (links) nicht eine
 
 Ein Operator kann auch als Methode einer Klasse definiert werden. 
 Sie haben nur noch ein Aufrufparameter.\\
-Syntax : \say{return-type} operator\say{typ}(type in);\\
+Syntax : \verb|<returntype> operator<typ>(type in);|\\
 Der 2. Parameter ist das Objekt selbst, welche die Methode aufruft.
 
 \lstinputlisting{code/operator_overloading_method.cpp}
@@ -335,6 +335,10 @@ Unterklasse erbt (die Attribute und Methoden) von Superklasse.
 Dies stellt eine \say{ist ein beziehung} dar. 
 Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} aussieht wie in der Darstellung da ansonsten Verwechslungsgefahr mit anderen Mechanismen entstehen könnte.
 
+\subsubsection{Syntax}
+
+\lstinputlisting{code/vererbung_syntax.cpp}
+
 \subsubsection{UML++}
 
 \noindent
@@ -371,9 +375,7 @@ Es ist sehr wichtig, dass die Pfeilspitze \colorbox{red!65}{\textbf{genau so!}} 
     Z.b. C4 Erbt alles von C2 und C1
 \end{minipage}
 
-\subsubsection{Syntax}
-
-\lstinputlisting{code/vererbung_syntax.cpp}
+\subsubsection{Sichtbarkeit}
 
 Die Sichtbarkeit ist durch das Public definiert. 
 Es ist möglich die Sichtbarkeit aller Attribute und Methoden einzuschränken. 
@@ -387,7 +389,7 @@ Mit \textbf{private} wird alles private (nicht sehr nützlich).
 
 Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
 
-\subsubsection{Ctor / Dtor chaining}
+\subsubsection{Constructor / Destructor chaining}
 
 Grundsätzlich initialisieren ctors nur die eigene Klasse. 
 Dh Superklassen initialisieren sich selbst. 
@@ -411,7 +413,7 @@ Im folgenden Beispiel haben eine Subklasse und eine Oberklasse eine print Funkti
 Dieses Beispiel soll zeigen, dass Pointer, welche eigentlich von einer Oberklasse auf eine Unterklasse zeigen auf die \say{Eigenen} Funktionen der Oberklasse zeigt, solange diese nicht überschrieben worden sind.
 Dies kann als Verhalten gewünscht sein. 
 
-\subsection{virtual, scopeoperator, override und final}
+\subsection{virtual, final, override und scopeoperator}
 
 \subsubsection{virtual}\label{Virtual}
 
@@ -453,7 +455,7 @@ typeid gibt ein std::type\_info zurück.
 
 \lstinputlisting{code/RTTI.cpp}
 
-\subsubsection{Imlementation von RTTI}
+\subsubsection{Implementation von RTTI}
 
 Das RTTI System arbeitet meistens mit einem so genannten V-Table in dem zu allen(evtl geerbten) virtuellen Methoden ein Pointer definiert ist. 
 Die Klasse erhält zusätzlich einen V-table Pointer. 

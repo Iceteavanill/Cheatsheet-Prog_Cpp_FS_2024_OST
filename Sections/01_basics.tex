@@ -13,9 +13,9 @@ C++ ist sehr ähnlich zu C. Es gibt aber einige wichtige Änderungen zu C:
     \item Nativen Bool Typ : \textbf{bool}
     \item richtiges Konstanten Schlüsselwort : \textbf{constexpr}
     \item Standartbibliotheken haben kein .h mehr beim Aufrufen
-    \item C Standartbibliotheken Können weiter verwendet werden, haben aber ein C im Header(stdio.h $\rightarrow$ cstdio)
+    \item C Standartbibliotheken können weiter verwendet werden, haben aber ein C im Header(stdio.h $\rightarrow$ cstdio)
     \item Char-Literale (z. B. 'A') haben in C++ den Datentyp char (in C war es int)(Brauchen ein const)
-    \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: std
+    \item Es gibt benannte Namensräume. Wichtigster Namensraum für die STL: \say{std}
     \item For Each loop support (siehe Kapitel \ref{forEach})
     \item ...
 \end{itemize}
@@ -41,8 +41,8 @@ Ein Stream repräsentiert einen generischen sequentiellen Datenstrom. Z.b: ein E
 Die wichtigsten Operatoren sind:
 
 \begin{itemize}[itemsep=1pt, parsep=0pt]
-    \item \say{$<<$} Inserter $\rightarrow$  Daten einfügen
-    \item \say{$>>$} Extractor $\rightarrow$ Daten herausholen
+    \item \verb|<<| : Inserter $\rightarrow$  Daten einfügen
+    \item \verb|>>| :  Extractor $\rightarrow$ Daten herausholen
 \end{itemize}
 
 Für Standardklassen sind diese Operatoren bereits definiert.
@@ -97,7 +97,7 @@ Diese Funktion setzt die Anzahl Dezimalstellen (vor und nach dem Komma), welche 
 In Kombination mit \textbf{fixed} werden nur die Anzahl \textbf{Nachkommastellen} gesetzt. 
 Die gegebenen Werte bleiben über mehrere Einfügeoperationen erhalten (muss man nur einmal setzen). 
 
-\section{Namespaces}
+\subsection{Namespaces}
 
 Namespaces helfen, Namenskonflikte zu verhindern. 
 Sie fügen ein Namensvorsatz zu allen Variablen. 

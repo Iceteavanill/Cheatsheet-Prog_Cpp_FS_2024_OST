@@ -12,3 +12,5 @@ Einige Inhalte wurden aus den Unterrichtsmaterialien entnommen.
 Danke an Fabian Suter und Nino Briker fürs gegenlesen.
 
 Um es einfacher zu machen diese Zusammenfassung anzupassen wurden die Flags "tikzumlWorks" und "svgWorks" implementiert. Diese erlauben es die Zusammenfassung anzupassen ohne das TikzUML und SVG package zu installieren. 
+
+[Fabian Suter](https://github.com/FabianSuter) hat diese Zusammenfassung mit ein paar Beispielen [erweitert](https://github.com/FabianSuter/ProgCpp)
