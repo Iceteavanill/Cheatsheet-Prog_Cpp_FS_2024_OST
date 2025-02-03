@@ -67,7 +67,11 @@ Dieser ist \say{Delete} egal.
 Der Speicheraufbau bildlich dargestellt sieht ungefähr so aus:
 
 \begin{center}
+  \ifthenelse{\boolean{svgWorks}}{
+    \includesvg[width = \linewidth, inkscapelatex=false]{svg/memorylayout.svg}
+  }{
     \includegraphics[width=\columnwidth]{pictures/memorylayout.png}  
+  }
 \end{center}
 
 Je nach Architektur kann es auch sein, dass die hohen und tiefen Adressen anders herum sind.

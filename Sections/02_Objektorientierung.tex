@@ -384,7 +384,11 @@ Mit \textbf{protected} wird alles was public war protected.
 Mit \textbf{private} wird alles private (nicht sehr nützlich).
 
 \begin{center}
-    \includegraphics[width=0.7\columnwidth]{pictures/Vererbung.png}    
+    \ifthenelse{\boolean{svgWorks}}{
+        \includesvg[width = 0.8\linewidth, inkscapelatex=false]{svg/vererbung.svg}
+    }{
+        \includegraphics[width=0.7\columnwidth]{pictures/Vererbung.png}    
+    }
 \end{center}
 
 Wird eine Vererbung private durchgeführt, sind keine Attribute oder Methoden mehr sichtbar.
@@ -467,7 +471,7 @@ Der V-pointer der Ober- und Unterklasse ist darum unterschiedlich / sie zeigen n
 Die Unterklassen zeigen wiederum auf denselben Vtable.  
 
 \begin{center}
-    \ifthenelse{\boolean{tikzumlWorks}}{
+    \ifthenelse{\boolean{svgWorks}}{
         \includesvg[width = \linewidth, inkscapelatex=false]{svg/vtable.svg}    
     }{
         \includegraphics[width=\columnwidth]{pictures/vtable.png}  
